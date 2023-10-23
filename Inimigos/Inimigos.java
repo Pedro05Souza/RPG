@@ -8,6 +8,7 @@ import Personagens.Personagem;
 
     public abstract class Inimigos {
         protected int vida, dano, armadura, xp, nivel, pontos;
+        protected String nome;
         protected Random random = new Random();
 
         public Inimigos(int i){
@@ -20,6 +21,15 @@ import Personagens.Personagem;
             int FormulaXp = nivel * 40;
             pontos = FormulaPonto;
             setXp(FormulaXp);
+        }
+
+        
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
         }
 
         public int getPontos() {
