@@ -1,16 +1,16 @@
 package Personagens;
 import java.util.Scanner;
 
-import Inimigos.Inimigos;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import java.util.Random;
 
-public abstract class Personagem implements PersonagemInterface{
+public abstract class Personagem {
     protected int vida, xp, dano, armadura, level, pts;
     protected Scanner input = new Scanner(System.in);
     private String [] classes = new String[3];

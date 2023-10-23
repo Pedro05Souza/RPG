@@ -1,6 +1,5 @@
     package Inimigos;
     import java.util.Random;
-    import Personagens.Personagem;
 
     public abstract class Inimigos {
         protected int vida, dano, armadura, xp, nivel, pontos;
