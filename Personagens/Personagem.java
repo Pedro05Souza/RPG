@@ -1,12 +1,18 @@
 package Personagens;
 import java.util.Scanner;
+
+import Inimigos.Inimigos;
+
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public abstract class Personagem{
+public abstract class Personagem implements PersonagemInterface{
     protected int vida, xp, dano, armadura, level, pts;
+    protected Scanner input = new Scanner(System.in);
     private String [] classes = new String[3];
     private static final Map<Character, String> classMap = new HashMap<>();
 
@@ -17,20 +23,20 @@ public abstract class Personagem{
     }
 
     protected Random r = new Random();
-    protected char classeC;
-    Scanner input = new Scanner(System.in);                                                         
+    protected char classeC;                                                     
     
     public int getVida() {
         return vida;
     }
 
-    public String [] getClasses(Personagem p){
+    public String [] getClasse(Personagem p){
         if(classMap.containsKey(p.classeC)){
             classes[0] = classMap.get(p.classeC);
             return classes;
         }
         return null;
         }
+    
 
     public void setVida(int vida) {
         this.vida = vida;
@@ -102,6 +108,22 @@ public abstract class Personagem{
         }
        }
     }
+
+    public void getAtaque(Object a) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Field [] camposAtaque = a.getClass().getDeclaredFields();
+        for(Field campo: camposAtaque){
+            if(campo.getName().equalsIgnoreCase("atacar")){
+                try{
+                    Method metodoAtacar = a.getClass().getMethod(campo.getName());
+                    metodoAtacar.invoke(a);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                
+            }
+        }
+
+    }
+}
     
     public int danoTomadoP(int dmg) {
         int defesa = getArmadura();

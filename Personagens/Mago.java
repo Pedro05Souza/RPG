@@ -44,12 +44,13 @@ public class Mago extends Personagem implements PersonagemInterface {
   
     @Override
     public void atacar(Inimigos i) {
-        int menu = r.nextInt(2);
+        PersonagemInterface.super.atacar(i);
+        int menu = input.nextInt();
         switch(menu){
-            case 0:
+            case 1:
             ataque1(i);
             break;
-            case 1:
+            case 2:
             //ataque2(i);
             break;
         }
