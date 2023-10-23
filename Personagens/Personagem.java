@@ -1,6 +1,8 @@
 package Personagens;
 import java.util.Scanner;
 
+import Inimigos.Inimigos;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -109,13 +111,13 @@ public abstract class Personagem {
        }
     }
 
-    public void getAtaque(Object a) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Field [] camposAtaque = a.getClass().getDeclaredFields();
         for(Field campo: camposAtaque){
             if(campo.getName().equalsIgnoreCase("atacar")){
                 try{
-                    Method metodoAtacar = a.getClass().getMethod(campo.getName());
-                    metodoAtacar.invoke(a);
+                    Method metodoAtacar = a.getClass().getMethod(campo.getName(), Inimigos.class);
+                    metodoAtacar.invoke(a, i);
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                 

@@ -1,5 +1,10 @@
-    package Inimigos;
-    import java.util.Random;
+package Inimigos;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Random;
+
+import Personagens.Personagem;
 
     public abstract class Inimigos {
         protected int vida, dano, armadura, xp, nivel, pontos;
@@ -68,6 +73,23 @@
             }
             return dano;
         }
+
+
+         public void getAtaque(Object a, Personagem p) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Field [] camposAtaque = a.getClass().getDeclaredFields();
+        for(Field campo: camposAtaque){
+            if(campo.getName().equalsIgnoreCase("atacar")){
+                try{
+                    Method metodoAtacar = a.getClass().getMethod(campo.getName(), Personagem.class);
+                    metodoAtacar.invoke(a, p);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                
+            }
+        }
+
+    }
+}
 
         public int Scaling(int nivelP){
             int lvlInimigo = getNivel();

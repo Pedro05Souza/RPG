@@ -6,8 +6,8 @@ public class Funcionalidades{
 
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException{
         while(p.getVida() > 0 || i.getVida() > 0){
-            p.getAtaque(p);
-
+            p.getAtaque(p, i);
+            i.getAtaque(i, p);
         }
     }
 
