@@ -75,21 +75,18 @@ import Personagens.Personagem;
         }
 
 
-         public void getAtaque(Object a, Personagem p) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Field [] camposAtaque = a.getClass().getDeclaredFields();
-        for(Field campo: camposAtaque){
-            if(campo.getName().equalsIgnoreCase("atacar")){
-                try{
-                    Method metodoAtacar = a.getClass().getMethod(campo.getName(), Personagem.class);
-                    metodoAtacar.invoke(a, p);
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                
+        public void getAtaque(Object a, Personagem p) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+            Method[] declaredMethods = a.getClass().getDeclaredMethods();
+            for (Method method : declaredMethods) {
+                if (method.getName().equals("atacar")) {
+                    try {
+                        method.invoke(a, p);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
-
-    }
-}
 
         public int Scaling(int nivelP){
             int lvlInimigo = getNivel();

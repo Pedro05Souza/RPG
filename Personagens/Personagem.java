@@ -112,20 +112,17 @@ public abstract class Personagem {
     }
 
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Field [] camposAtaque = a.getClass().getDeclaredFields();
-        for(Field campo: camposAtaque){
-            if(campo.getName().equalsIgnoreCase("atacar")){
-                try{
-                    Method metodoAtacar = a.getClass().getMethod(campo.getName(), Inimigos.class);
-                    metodoAtacar.invoke(a, i);
-                } catch (NoSuchMethodException e) {
+        Method[] declaredMethods = a.getClass().getDeclaredMethods();
+        for (Method method : declaredMethods) {
+            if (method.getName().equals("atacar")) {
+                try {
+                    method.invoke(a, i);
+                } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
-                
+                }
             }
         }
-
     }
-}
     
     public int danoTomadoP(int dmg) {
         int defesa = getArmadura();

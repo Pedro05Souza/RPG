@@ -60,10 +60,10 @@ public class Mago extends Personagem implements PersonagemInterface {
     public void ataque1(Inimigos i) {
         int dano = getDano();
         if(mana >= manaNecessaria(.2)){
-            i.danoTomadoI(dano);
+            System.out.println("Your attack deals: " + i.danoTomadoI(dano) + " damage.");
            reducaoMana(.2);
         } else {
-            System.out.println("Mana insuficiente!");
+            System.out.println("Insufficient mana!");
         }
     }
 
@@ -98,7 +98,7 @@ public class Mago extends Personagem implements PersonagemInterface {
                 
             }
         } else {
-            System.out.println("Mana insuficiente!");
+            System.out.println("Insufficient mana");
         }
     
     }
@@ -106,6 +106,7 @@ public class Mago extends Personagem implements PersonagemInterface {
     public void reducaoMana(double porcentagem){
         int valorReduzido = (int) Math.max(((int) mana * porcentagem), 0);
         setMana(getMana() - valorReduzido);
+        System.out.println("Your mana has been reduced to:" + getMana());
     }
 
     public int manaNecessaria(double percentual){
