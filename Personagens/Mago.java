@@ -12,35 +12,11 @@ public class Mago extends Personagem implements PersonagemInterface {
         manaTotal = 100;
         mana = manaTotal;
         level = 1;
+        pts = 100;
         armadura = 10; 
         wisdom = 1;
     }
-    
 
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-    
-    public int getWisdom() {
-        return wisdom;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-     public int getManaTotal() {
-        return manaTotal;
-    }
-
-
-    public void setManaTotal(int manaTotal) {
-        this.manaTotal = manaTotal;
-    }
   
     @Override
     public void atacar(Inimigos i) {
@@ -51,7 +27,7 @@ public class Mago extends Personagem implements PersonagemInterface {
             ataque1(i);
             break;
             case 2:
-            ataque2(i);
+            //ataque2(i);
             break;
         }
         
@@ -104,6 +80,8 @@ public class Mago extends Personagem implements PersonagemInterface {
     
     }
 
+    // Funções que cuidam da mana
+
     public void reducaoMana(double porcentagem){
         int valorReduzido = (int) Math.max(((int) mana * porcentagem), 0);
         setMana(getMana() - valorReduzido);
@@ -113,6 +91,33 @@ public class Mago extends Personagem implements PersonagemInterface {
     public int manaNecessaria(double percentual){
         int manaN = (int) (manaTotal * percentual);
         return manaN;
+    }
+
+
+    // Setters e Getters
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+    
+    public int getWisdom() {
+        return wisdom;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+     public int getManaTotal() {
+        return manaTotal;
+    }
+
+
+    public void setManaTotal(int manaTotal) {
+        this.manaTotal = manaTotal;
     }
 
     

@@ -7,7 +7,9 @@ import Personagens.Mago;
 import Personagens.Personagem;
 
 public class Funcoes {
-    
+
+
+    // Função que faz as lutas entre os Personagens e Inimigos
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException{
         while(p.getVida() > 0 && i.getVida() > 0){
             try {
@@ -20,14 +22,15 @@ public class Funcoes {
     }
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException {
         Mago m = new Mago();
         Elemental e = new Elemental(m);
         Funcoes f = new Funcoes();
-        try {
+         try{
             f.batalha(e, m);
-        } catch (NoSuchMethodException | IllegalAccessException e1) {
-            e1.printStackTrace();
+        }catch(IllegalArgumentException | IllegalAccessException i){
+            System.out.println(i);
+
         }
     }
 }

@@ -8,7 +8,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
             super(p.getLevel());
             nome = "Shadow Elemental";
             vida = 100;
-            dano = 10;
+            dano = 40;
             armadura = 2;
             nivel = 1;
         }
@@ -30,7 +30,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
     public void ataque1(Personagem p) {
         int menosQueMetade = (int) ( vida * 0.3 );
         if(p.getVida() > 0 && vida <= menosQueMetade){
-            int vidaSugada = (int) (p.getVida() * 0.15);
+            int vidaSugada = (int) (p.getVida() * 0.3);
              setVida(getVida() + vidaSugada);
              System.out.println("Shadow Elemental unleashes one of its ominous abilities: Drain Health. It has drained " + vidaSugada + " of your health.");
         } else {
