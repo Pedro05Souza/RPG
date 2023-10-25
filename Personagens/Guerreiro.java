@@ -9,6 +9,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         classeC = 'G';
         vida = 100;
         dano = 30;
+        danoCrit = 0;
         level = 1;
         pts = 8;
         armadura = 20;
@@ -17,18 +18,28 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
 
 
     public void ataque1(Inimigos i){
-        int dano = getDano();
-        i.danoTomadoI(dano);
+        i.danoTomadoI(setDanoCrit());
     }
 
-    public int getDanoCrit() {
+    public void ataque2(Inimigos i){
+
+    }
+
+    public int setDanoCrit(){
+        int danoCrit = getDanoCrit();
+        int sorte = r.nextInt(101);
+        int dano = getDano();
+        if(danoCrit > sorte){
+            int danoFinal = dano * 2;
+            System.out.println("Your character deals CRITICAL damage, dealing " + danoFinal + " damage");
+            return danoFinal;
+        }
+        System.out.println("Your character deals " + dano +  " damage");
+        return dano;
+     }
+
+     public int getDanoCrit() {
         return danoCrit;
     }
-
-    public void setDanoCrit(int danoCrit) {
-        this.danoCrit = danoCrit;
-    }
-
-    
     
 }

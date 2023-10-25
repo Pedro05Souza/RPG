@@ -22,8 +22,8 @@ public abstract class Personagem {
 
     static {
         classMap.put('M', "Mana");
-        classMap.put('G', "Sangramento");
-        classMap.put('T', "Dano crtico");
+        classMap.put('G', "Critical Damage");
+        classMap.put('T', "Bleeding");
     }
                                                    
 
