@@ -24,6 +24,7 @@ public class Funcoes {
     
     public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException {
         Mago m = new Mago();
+        Personagem p = m;
         Elemental e = new Elemental(m);
         Funcoes f = new Funcoes();
          try{

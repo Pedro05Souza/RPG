@@ -12,7 +12,7 @@ public class Mago extends Personagem implements PersonagemInterface {
         manaTotal = 100;
         mana = manaTotal;
         level = 1;
-        pts = 100;
+        pts = 8;
         armadura = 10; 
         wisdom = 1;
     }
