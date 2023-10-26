@@ -10,8 +10,8 @@ import Personagens.Personagem;
         protected String nome;
         protected Random random = new Random();
 
-        public Inimigos(int i){
-            setPontos(Scaling(i));
+        public Inimigos(int p){
+            setPontos(Scaling(p));
         }
 
         // Função que seta os métodos do inimigo pegando o level do player * 8
@@ -27,7 +27,7 @@ import Personagens.Personagem;
             int dano = dmg;
             int defesa = getArmadura();
             if(defesa > 0){
-                int danoFinal = (int) Math.max(dano - (int) (2 * Math.sqrt(defesa)), 8);
+                int danoFinal = (int) Math.max(dano - (int) (2 * Math.sqrt(defesa)), 2);
                 setVida(getVida() - danoFinal);
                 return danoFinal;
             }

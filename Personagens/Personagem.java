@@ -91,7 +91,7 @@ public abstract class Personagem {
         int defesa = getArmadura();
         int dano = dmg;
         if(defesa > 0){
-            int danoFinal = (int) Math.max(dano - (int) (2 * Math.sqrt(defesa)), 8);
+            int danoFinal = (int) Math.max(dano - (int) (2 * Math.sqrt(defesa)), 2);
             setVida(getVida() - danoFinal);
             return danoFinal;
         }

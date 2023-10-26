@@ -36,7 +36,9 @@ public class Mago extends Personagem implements PersonagemInterface {
     public void ataque1(Inimigos i) {
         int dano = getDano();
         if(mana >= manaNecessaria(.2)){
+            System.out.println("--------------------------------");
             System.out.println("Your attack deals: " + i.danoTomadoI(dano) + " damage to " + i.getNome());
+            System.out.println("--------------------------------");
            reducaoMana(.2);
         } else {
             System.out.println("Insufficient mana!");
@@ -53,7 +55,6 @@ public class Mago extends Personagem implements PersonagemInterface {
                     int danoFogo = (int)  Math.sqrt(dano);
                     int danoFinal = Math.max(danoFogo, 1);
                     while(System.currentTimeMillis() < endTime){
-                    System.out.println("Teste");
                     i.danoTomadoI(danoFinal);
                     try {
                         Thread.sleep(1000);
@@ -95,6 +96,7 @@ public class Mago extends Personagem implements PersonagemInterface {
 
 
     // Setters e Getters
+
     public int getMana() {
         return mana;
     }

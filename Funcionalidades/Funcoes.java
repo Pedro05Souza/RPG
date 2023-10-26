@@ -3,6 +3,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import Inimigos.Elemental;
 import Inimigos.Inimigos;
+import Personagens.Guerreiro;
 import Personagens.Mago;
 import Personagens.Personagem;
 
@@ -23,12 +24,12 @@ public class Funcoes {
     
     
     public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException {
-        Mago m = new Mago();
-        Personagem p = m;
-        Elemental e = new Elemental(m);
+        Guerreiro g = new Guerreiro();
+        Personagem p = g;
+        Elemental e = new Elemental(g);
         Funcoes f = new Funcoes();
          try{
-            f.batalha(e, m);
+            f.batalha(e, p);
         }catch(IllegalArgumentException | IllegalAccessException i){
             System.out.println(i);
 
