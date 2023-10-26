@@ -1,6 +1,5 @@
 
 import java.lang.reflect.InvocationTargetException;
-
 import Inimigos.Elemental;
 import Inimigos.Inimigos;
 import Personagens.Guerreiro;

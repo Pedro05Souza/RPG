@@ -47,14 +47,14 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         int danoMultiplicado =  getDano() * 2;
         int sorteAtual = getSorteAtual();
         int sorte = r.nextInt(101);
+        System.out.println(sorteAtual);
         if(sorteAtual > sorte){
             System.out.println("Your attack reflects back to you, dealing " + danoTomadoP(danoMultiplicado) + " damage");
             sorteAtual = 10;
         } else {
             setSorteAtual(sorteAtual += 5);
-            int porcentagem = (sorteAtual / sorte) * 10;
             System.out.println("Your attack deals: " + i.danoTomadoI(danoMultiplicado) + " damage.");
-            System.out.println("Chance to reflect back to you: " + porcentagem + "%");
+            System.out.println("Chance to reflect back to you: " + sorteAtual + "%");
         }
 
     }

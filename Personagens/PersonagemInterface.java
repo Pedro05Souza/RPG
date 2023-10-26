@@ -1,5 +1,4 @@
 package Personagens;
-
 import Inimigos.Inimigos;
 
 public interface PersonagemInterface {

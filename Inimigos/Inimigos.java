@@ -51,7 +51,7 @@ import Personagens.Personagem;
         // Função que seta o nivel do inimigo para o player
         public int Scaling(int nivelP){
             int lvlInimigo = getNivel();
-            lvlInimigo = nivelP;
+            lvlInimigo = nivelP * 2;
             return lvlInimigo;
         }
         
