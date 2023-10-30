@@ -1,4 +1,7 @@
 package Personagens;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import Inimigos.Inimigos;
 
 
@@ -13,7 +16,7 @@ public class Mago extends Personagem implements PersonagemInterface {
         mana = manaTotal;
         level = 1;
         pts = 8;
-        armadura = 10; 
+        armadura = 5; 
         wisdom = 1;
     }
 
@@ -32,52 +35,48 @@ public class Mago extends Personagem implements PersonagemInterface {
         }
         
     }
-
+    @Override
     public void ataque1(Inimigos i) {
+        setAtaque1N("Fireball");
         int dano = getDano();
         if(mana >= manaNecessaria(.2)){
-            System.out.println("--------------------------------");
             System.out.println("Your attack deals: " + i.danoTomadoI(dano) + " damage to " + i.getNome());
-            System.out.println("--------------------------------");
            reducaoMana(.2);
         } else {
             System.out.println("Insufficient mana!");
         }
     }
 
+    @Override
     public void ataque2(Inimigos i){
-        int dano = getDano();
-        if(mana >= manaNecessaria(.5)){
-            Thread t = new Thread(new Runnable(){
-            long endTime = System.currentTimeMillis() + 10000;
-                @Override
-                public void run() {
-                    int danoFogo = (int)  Math.sqrt(dano);
-                    int danoFinal = Math.max(danoFogo, 1);
-                    while(System.currentTimeMillis() < endTime){
+       setAtaque2N("Fire Damage Spell");
+       int dano = getDano();
+    if (mana >= manaNecessaria(0.5)){
+        System.out.println("Your character releases fire damage spell. Dealing " + dano + " damage to " + i.getNome());
+        int duracaoAtaque = 10000; 
+        int intervaloDano = 1000; 
+        int danoFogo = (int) Math.sqrt(dano);
+        int danoFinal = Math.max(danoFogo, 1);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            long endTime = System.currentTimeMillis() + duracaoAtaque;
+            @Override
+            public void run() {
+                while (System.currentTimeMillis() < endTime) {
                     i.danoTomadoI(danoFinal);
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(intervaloDano);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                reducaoMana(.5);
-                }
-            });
-            t.start();
-            long tempoVidaThread = 10000;
-            try{
-                t.join(tempoVidaThread);
-                if(t.isAlive()){
-                    t.interrupt();
-                }
-            } catch(InterruptedException e){
-                
             }
-        } else {
-            System.out.println("Insufficient mana");
-        }
+        }, 0, intervaloDano);
+        reducaoMana(0.5);
+
+    } else {
+        System.out.println("Insufficient mana");
+    }
     
     }
 

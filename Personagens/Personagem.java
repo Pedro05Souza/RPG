@@ -14,6 +14,7 @@ import java.util.Random;
 
 public abstract class Personagem {
     protected int vida, xp, dano, armadura, level, pts;
+    protected String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
     protected char classeC;  
@@ -22,8 +23,8 @@ public abstract class Personagem {
 
     static {
         classMap.put('M', "Mana");
-        classMap.put('G', "Critical Damage");
-        classMap.put('T', "Bleeding");
+        classMap.put('G', "Critical Damage Chance");
+        classMap.put('K', "Status Increase Chance");
     }
                                                    
 
@@ -208,6 +209,24 @@ public abstract class Personagem {
     public void setPts(int pts) {
         this.pts = pts;
     }
+
+    public String getAtaque1N() {
+        return ataque1;
+    }
+
+    public void setAtaque1N(String ataque1) {
+        this.ataque1 = ataque1;
+    }
+
+    public String getAtaque2N() {
+        return ataque2;
+    }
+
+    public void setAtaque2N(String ataque2) {
+        this.ataque2 = ataque2;
+    }
+
+    
 
     
 }

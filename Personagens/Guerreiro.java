@@ -12,7 +12,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         danoCrit = 2;
         level = 1;
         pts = 8;
-        armadura = 20;
+        armadura = 10;
         sorteAtual = 10;
     }
 
@@ -30,8 +30,9 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         }
     }
 
-
+    @Override
     public void ataque1(Inimigos i){
+        setAtaque1N("Warrior's Slash");
         int danoCrit = getDanoCrit();
         int sorte = r.nextInt(101);
         int dano = getDano();
@@ -42,13 +43,14 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         System.out.println("Your character deals " + dano +  " damage to " + i.getNome());
     }
 
-
-    public void ataque2(Inimigos i){
+    @Override
+    public void ataque2(Inimigos i) {
+        setAtaque2N("Celestial Judgement");
         int danoMultiplicado =  getDano() * 2;
         int sorteAtual = getSorteAtual();
-        int sorte = r.nextInt(101);
+        int rng = (int) (Math.random() * 100);
         System.out.println(sorteAtual);
-        if(sorteAtual > sorte){
+        if(sorteAtual > rng){
             System.out.println("Your attack reflects back to you, dealing " + danoTomadoP(danoMultiplicado) + " damage");
             sorteAtual = 10;
         } else {

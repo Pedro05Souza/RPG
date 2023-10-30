@@ -2,12 +2,11 @@ package Inimigos;
 import Personagens.Personagem;
 
 public class Elemental extends Inimigos implements InimigosInterface {
-    public static int ai;
-
+    
         public Elemental(Personagem p){
             super(p.getLevel());
             nome = "Shadow Elemental";
-            vida = 10000;
+            vida = 100;
             dano = 1;
             armadura = 2;
             nivel = 1;
@@ -16,7 +15,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
 
     @Override
     public void atacar(Personagem p) {
-        int ai = random.nextInt(2);
+        ai = random.nextInt(2);
         switch(ai){
             case 0:
             ataque1(p);
@@ -44,6 +43,15 @@ public class Elemental extends Inimigos implements InimigosInterface {
             System.out.println("Shadow Elemental releases one of its abilities: Dark Energy. It deals " + p.danoTomadoP(dmg) + " damage.");
 
         }
+    }
+
+    public int getAi() {
+        return ai;
+    }
+
+
+    public void setAi(int ai) {
+        this.ai = ai;
     }
 
     

@@ -9,6 +9,7 @@ import Personagens.Personagem;
         protected int vida, dano, armadura, xp, nivel, pontos;
         protected String nome;
         protected Random random = new Random();
+        protected int ai;
 
         public Inimigos(int p){
             setPontos(Scaling(p));
@@ -138,7 +139,14 @@ import Personagens.Personagem;
         public int getNivel() {
             return nivel;
         
-        
-        
         }
+
+        public int getAi() {
+            return ai;
+        }
+
+        public void setAi(int ai) {
+            this.ai = ai;
+        }
+        
     }
