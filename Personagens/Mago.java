@@ -7,6 +7,11 @@ import Inimigos.Inimigos;
 
 public class Mago extends Personagem implements PersonagemInterface {
     private int mana, manaTotal, wisdom;
+    
+    {
+        setAtaque1N("Fireball");
+        setAtaque2N("Fire Damage Spell");
+    }
 
     public Mago(){
         classeC = 'M';
@@ -37,7 +42,6 @@ public class Mago extends Personagem implements PersonagemInterface {
     }
     @Override
     public void ataque1(Inimigos i) {
-        setAtaque1N("Fireball");
         int dano = getDano();
         if(mana >= manaNecessaria(.2)){
             System.out.println("Your attack deals: " + i.danoTomadoI(dano) + " damage to " + i.getNome());
@@ -49,7 +53,6 @@ public class Mago extends Personagem implements PersonagemInterface {
 
     @Override
     public void ataque2(Inimigos i){
-       setAtaque2N("Fire Damage Spell");
        int dano = getDano();
     if (mana >= manaNecessaria(0.5)){
         System.out.println("Your character releases fire damage spell. Dealing " + dano + " damage to " + i.getNome());

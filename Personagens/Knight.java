@@ -1,12 +1,17 @@
 package Personagens;
-
-import java.util.Timer;
 import java.util.TimerTask;
-
 import Inimigos.Inimigos;
 
 public class Knight extends Personagem implements PersonagemInterface {
-    private int statusIncrease;
+    private final int statusIncrease = 40;
+    private int cooldown;
+
+
+    // Seta o nome dos ataques
+    {
+        setAtaque1N("Sword Slash");
+        setAtaque2N("Eternal Vow;");
+    }
 
     public Knight(){
         classeC = 'K';
@@ -14,8 +19,8 @@ public class Knight extends Personagem implements PersonagemInterface {
         vida = 100;
         level = 1;
         pts = 8;
-        statusIncrease = 5;
         armadura = 30;
+        cooldown = 3;
     }
 
     @Override
@@ -34,13 +39,12 @@ public class Knight extends Personagem implements PersonagemInterface {
 
     @Override
     public void ataque1(Inimigos i){
-        setAtaque1N("Sword Slash;");
         int dano = getDano();
-        System.out.println("Your character deals " + dano +  " damage to " + i.getNome());
+        System.out.println("Your character deals " + i.danoTomadoI(dano) +  " damage to " + i.getNome());
     }
+
     @Override
     public void ataque2(Inimigos i){
-        setAtaque2N("Status Increase Vow;");
         int rng = (int) (Math.random() * 100);
         int dano = getDano();
         if(statusIncrease >= rng){
@@ -48,9 +52,12 @@ public class Knight extends Personagem implements PersonagemInterface {
         }
         else {
             int danoDim = dano / 2;
-            System.out.println("Your character failed to stun " + i.getNome() + " But deals half of the damage instead. Damage: " + i.danoTomadoI(danoDim));
+            System.out.println("Your character failed but deals half of the damage instead. Damage: " + i.danoTomadoI(danoDim));
         }
     }
+    
+    // Aumenta o status da classe Knight por um tempo
+
     public void aumentoStatus(){
         int danoOriginal = getDano();
         int armaduraOriginal = getArmadura();
@@ -58,9 +65,8 @@ public class Knight extends Personagem implements PersonagemInterface {
         int armaduraAumentado = (int) (armaduraOriginal * 0.3);
         setArmadura(armaduraAumentado);
         setDano(danoAumentado);
-        int tempoDuracao = 5000;
-        System.out.println("Your character increases the statues of his sword and armor, increasing his damage by " + danoAumentado + " and armor by " + armaduraAumentado + " for 5 seconds.");
-        Timer timer = new Timer();
+        int tempoDuracao = cooldown * 1000;
+        System.out.println("Your character increases the statues of his sword and armor, increasing his damage by " + danoAumentado + " and armor by " + armaduraAumentado + " for " + cooldown + " seconds.");
         timer.schedule(new TimerTask() {
             @Override
             public void run(){
@@ -72,4 +78,8 @@ public class Knight extends Personagem implements PersonagemInterface {
         }, tempoDuracao);
 
     }
+
+
+
+
 }

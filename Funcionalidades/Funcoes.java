@@ -1,10 +1,9 @@
 
 import java.lang.reflect.InvocationTargetException;
+
 import Inimigos.Elemental;
 import Inimigos.Inimigos;
-import Personagens.Guerreiro;
 import Personagens.Knight;
-import Personagens.Mago;
 import Personagens.Personagem;
 
 public class Funcoes {

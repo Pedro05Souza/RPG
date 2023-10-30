@@ -3,18 +3,26 @@ package Personagens;
 import Inimigos.Inimigos;
 
 public class Guerreiro extends Personagem implements PersonagemInterface {
-    private int danoCrit, sorteAtual;
+    private int critDmg, sorteAtual;
 
+
+
+     {
+        setAtaque1N("Warrior's Slash");
+        setAtaque2N("Celestial Judgement");
+    }
+    
     public Guerreiro(){
         classeC = 'G';
         vida = 100;
         dano = 30;
-        danoCrit = 2;
+        critDmg = 2;
         level = 1;
         pts = 8;
         armadura = 10;
         sorteAtual = 10;
     }
+    
 
     @Override
     public void atacar(Inimigos i){
@@ -32,7 +40,6 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
 
     @Override
     public void ataque1(Inimigos i){
-        setAtaque1N("Warrior's Slash");
         int danoCrit = getDanoCrit();
         int sorte = r.nextInt(101);
         int dano = getDano();
@@ -45,7 +52,6 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
 
     @Override
     public void ataque2(Inimigos i) {
-        setAtaque2N("Celestial Judgement");
         int danoMultiplicado =  getDano() * 2;
         int sorteAtual = getSorteAtual();
         int rng = (int) (Math.random() * 100);
@@ -63,7 +69,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
 
     // getters and setters
      public int getDanoCrit() {
-        return danoCrit;
+        return critDmg;
     }
 
     public int getSorteAtual() {

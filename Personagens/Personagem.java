@@ -1,5 +1,7 @@
 package Personagens;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Inimigos.Inimigos;
 
@@ -14,25 +16,32 @@ import java.util.Random;
 
 public abstract class Personagem {
     protected int vida, xp, dano, armadura, level, pts;
-    protected String ataque1, ataque2;
+    protected static String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
-    protected char classeC;  
+    protected char classeC;
+   // em caso de alguma classe precise de algum ataque com tempo
+    protected Timer timer = new Timer();  
     private String [] classes = new String[1];
     private static final Map<Character, String> classMap = new HashMap<>();
 
+    // Define os valores do Map
     static {
         classMap.put('M', "Mana");
-        classMap.put('G', "Critical Damage Chance");
-        classMap.put('K', "Status Increase Chance");
+        classMap.put('G', "CritDmg");
+        classMap.put('K', "CoolDown");
     }
+
                                                    
 
     // Status do jogador
     public void status(){
         System.out.println("HP " + getVida());
         System.out.println("Damage: " + getDano());
-        System.out.println("");
+        System.out.println("Armor: " + getArmadura());
+        System.out.println("Level: " + getLevel());
+        System.out.println("XP: " + getXp());
+        System.out.println("Attribute points: " + getPts());
     }
 
     // Pega a classe do jogador
@@ -155,6 +164,15 @@ public abstract class Personagem {
         }
     }
 
+    // Menu de ataque do jogador
+    public static void menuAtaque(){
+        System.out.println("--------------------------------");
+        System.out.println("Choose your character's attacks: ");
+        System.out.println("[1]. " + getAtaque1N());
+        System.out.println("[2]. " + getAtaque2N());
+    }
+
+
     // Getters e Setters
 
     public String getClasse(String [] classe){
@@ -210,23 +228,29 @@ public abstract class Personagem {
         this.pts = pts;
     }
 
-    public String getAtaque1N() {
+    public static String getAtaque1N() {
         return ataque1;
     }
 
-    public void setAtaque1N(String ataque1) {
-        this.ataque1 = ataque1;
+    public static void setAtaque1N(String ataque1) {
+        Personagem.ataque1 = ataque1;
     }
-
-    public String getAtaque2N() {
+    
+    public static String getAtaque2N() {
         return ataque2;
     }
 
-    public void setAtaque2N(String ataque2) {
-        this.ataque2 = ataque2;
+    public static void setAtaque2N(String ataque2) {
+        Personagem.ataque2 = ataque2;
     }
 
+    public char getClasseC() {
+        return classeC;
+    }
+
+    public void setClasseC(char classeC) {
+        this.classeC = classeC;
+    }
     
 
-    
 }
