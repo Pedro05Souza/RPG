@@ -1,17 +1,20 @@
 package Inventario;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-public class Itens {
+public class Itens extends Inventario {
     protected String nome, descricao;
+    protected tiposRaridade tiposRaridade;
     protected int dano, vida, armadura, valor;
     protected char itemClasse;
     boolean equipado;
 
+    public enum tiposRaridade{
+        Common, Uncommon, Rare, Epic, Legendary, Mythic;
+        
+    }
+
     public void efeitosItem(){
         System.out.println("----------------------");
+        System.out.println("Position: " + posAtual);
         System.out.println("Item name: " + getNome());
         System.out.println("Item Description: " + getDescricao());
         System.out.println("Damage: " + getDano());
@@ -19,6 +22,35 @@ public class Itens {
         System.out.println("Health: " + getVida());
         System.out.println("Value: " + getValor());
         System.out.println("----------------------");
+    }
+
+    // diz a porcentagem de drop de item por raridade
+    public int chanceRaridade() {
+        int porcentagem = 0;
+        switch (tiposRaridade) {
+            case Common:
+                porcentagem = 55;
+                break;
+            case Uncommon:
+                porcentagem = 20;
+                break;
+            case Rare:
+                porcentagem = 12;
+                break;
+            case Epic:
+                porcentagem = 7;
+                break;
+            case Legendary:
+                porcentagem = 5;
+                break;
+            case Mythic:
+                porcentagem = 1;
+                break;
+            default:
+                break;
+        }
+        return porcentagem;
+
     }
 
 
@@ -79,6 +111,16 @@ public class Itens {
     public void setValor(int valor) {
         this.valor = valor;
     }
+
+    public tiposRaridade getTiposRaridade() {
+        return tiposRaridade;
+    }
+
+    public void setTiposRaridade(tiposRaridade tiposRaridade) {
+        this.tiposRaridade = tiposRaridade;
+    }
+
+    
     
 
 

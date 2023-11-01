@@ -172,6 +172,13 @@ public abstract class Personagem {
         System.out.println("[2]. " + getAtaque2N());
     }
 
+    public void death(){
+        if(getVida() <= 0){
+        System.out.println("Your character has fallen."); 
+        System.exit(0);      
+    }
+    }
+
 
     // Getters e Setters
 

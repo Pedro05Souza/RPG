@@ -1,6 +1,5 @@
 package Inimigos;
 import Personagens.Personagem;
-
 public class Elemental extends Inimigos implements InimigosInterface {
     
         public Elemental(Personagem p){
@@ -52,6 +51,8 @@ public class Elemental extends Inimigos implements InimigosInterface {
     public void setAi(int ai) {
         this.ai = ai;
     }
+
+
 
     
     

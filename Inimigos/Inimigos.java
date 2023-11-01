@@ -1,15 +1,23 @@
 package Inimigos;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Random;
 
+import Inventario.Itens;
+import Inventario.Inventario;
 import Personagens.Personagem;
 
     public abstract class Inimigos {
+
         protected int vida, dano, armadura, xp, nivel, pontos;
+        protected ArrayList<Itens> drops = new ArrayList<>(3); 
         protected String nome;
         protected Random random = new Random();
         protected int ai;
+
+        private Inventario inv = new Inventario();
+
 
         public Inimigos(int p){
             setPontos(Scaling(p));
@@ -56,7 +64,7 @@ import Personagens.Personagem;
             return lvlInimigo;
         }
         
-        // Seta os atributos do inimigo comm um número aleatório
+        // Seta os atributos do inimigo com um número aleatório
         public void setAtributosInimigo(){
             int pontos = getPontos();
             int vidaAtual = getVida();
@@ -90,6 +98,37 @@ import Personagens.Personagem;
             setArmadura(defesaAtual + defesaFinal);
         }
 
+        // Função que faz o inimigo dropar um item
+        public void dropItem() {
+            int rng = random.nextInt(101);
+            int sorteTotal = 0;
+            int menorDiferenca = Integer.MAX_VALUE;
+            Itens itemEscolhido = null;
+            for (Itens item : drops) {
+                sorteTotal += item.chanceRaridade();
+            }
+            if (sorteTotal >= rng) {
+                for (Itens item : drops) {
+                    int diferencaAtual = Math.abs(item.chanceRaridade() - rng);
+                    if (Math.abs(menorDiferenca - rng) > diferencaAtual) {
+                        menorDiferenca = item.chanceRaridade() - rng;
+                        itemEscolhido = item;
+                    }
+                }
+            }
+            if (itemEscolhido != null) {
+                inv.pegarItem(itemEscolhido);
+            }
+            
+        }
+
+        public void death(){
+            if(getVida() < 0){
+                System.out.println("You have defeated " + getNome() + "!");
+                dropItem();
+            }
+        }
+        
         // Setters and Getters
         public String getNome() {
             return nome;
