@@ -121,12 +121,16 @@ import Personagens.Personagem;
             }
             
         }
-
+        // Função que verifica se o inimigo morreu
         public void death(){
             if(getVida() < 0){
                 System.out.println("You have defeated " + getNome() + "!");
                 dropItem();
             }
+        }
+
+        public void gerarInimigoAleatorio(){
+            
         }
         
         // Setters and Getters
