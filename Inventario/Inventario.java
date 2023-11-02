@@ -37,8 +37,13 @@ public class Inventario {
     }
 
     public void mostrarItens(){
-        for(Itens i : itens){
-            i.efeitosItem();
+        if(itens.size() == 0){
+            System.out.println("Inventory is empty.");
+        }
+        else{
+            for(Itens i : itens){
+               i.efeitosItem();
+            }
         }
     }
 

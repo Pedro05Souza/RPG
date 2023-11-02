@@ -1,6 +1,5 @@
 package Inventario.Equipamentos;
 
-import Personagens.Personagem;
 import Personagens.Mago;
 import Inventario.Itens;
 

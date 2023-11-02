@@ -1,7 +1,6 @@
 package Personagens;
 import java.util.Scanner;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import Inimigos.Inimigos;
 
@@ -30,18 +29,20 @@ public abstract class Personagem {
         classMap.put('M', "Mana");
         classMap.put('G', "CritDmg");
         classMap.put('K', "CoolDown");
+        classMap.put('A', "Arrows");
     }
 
                                                    
 
     // Status do jogador
-    public void status(){
+    public void status() throws IllegalArgumentException, IllegalAccessException {
         System.out.println("HP " + getVida());
         System.out.println("Damage: " + getDano());
         System.out.println("Armor: " + getArmadura());
         System.out.println("Level: " + getLevel());
         System.out.println("XP: " + getXp());
         System.out.println("Attribute points: " + getPts());
+        System.out.println(getClasse(classes) + ": " + getCalculoClasse(this, classes));
     }
 
     // Pega a classe do jogador
@@ -82,6 +83,22 @@ public abstract class Personagem {
        }
     }
 
+    public int getCalculoClasse(Object a, String [] atStrings) throws IllegalArgumentException, IllegalAccessException{
+        int valorAtributo = 0;
+        Field [] b = a.getClass().getDeclaredFields();
+        for(int i = 0; i < b.length; i ++){
+            for(int j = 0; j < atStrings.length; j++){
+                if(b[i].getName().equalsIgnoreCase(atStrings[j])){
+                    b[i].setAccessible(true);
+                    valorAtributo = b[i].getInt(a);
+                    return valorAtributo;
+                    
+                }
+            }
+        }
+        return valorAtributo;
+    }
+
     // Pega o método na interface de ataque.
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method[] declaredMethods = a.getClass().getDeclaredMethods();
@@ -120,6 +137,7 @@ public abstract class Personagem {
             boolean continuar = true;
             int PontosAtributos = getPts();
             while(PontosAtributos > 0 || continuar){
+                PontosAtributos = getPts();
                 System.out.println("What attributes do you wish to improve?");
                 System.out.println("[1]. Health;");
                 System.out.println("[2]. Damage;");
@@ -127,6 +145,9 @@ public abstract class Personagem {
                 System.out.println("[4]. " + getClasse(classes));
                 System.out.println("[5]. Leave;");
                 int menu = input.nextInt();
+                if(menu == 5){
+                    break;
+                }
                 System.out.println("How many points do you wish to use? Points remaining: " + getPts());
                 int ptsDistri = input.nextInt();
                 if(ptsDistri > PontosAtributos){
@@ -137,32 +158,30 @@ public abstract class Personagem {
                     case 1:
                         int vidaAumentada = vidaAtual / 10;
                         vidaFinal += vidaAumentada;
-                        PontosAtributos -= ptsDistri;
                     break;
                     case 2:
                         int danoAumentado = danoAtual / 2;
                         danoFinal += danoAumentado;
-                        PontosAtributos -= ptsDistri;
                     break;
                     case 3:
                         int defesaAumentada = defesaAtual / 2;
                         defesaFinal += defesaAumentada;
-                        PontosAtributos -= ptsDistri;
                     break;
                     case 4:
                     calculoClasse(p, classes);
                     break;
-                    case 5:
-                    continuar = false;
+                    default:
+                    System.out.println("Invalid option.");
                     break;
                 }
                 p.setVida(danoAtual + vidaFinal);
                 p.setDano(danoAtual + danoFinal);
                 p.setArmadura(defesaAtual + defesaFinal);
+                p.setPts(PontosAtributos - ptsDistri);
+                }
             }
         }
-        }
-    }
+        }   
 
     // Menu de ataque do jogador
     public static void menuAtaque(){

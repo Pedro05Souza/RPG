@@ -121,6 +121,7 @@ import Personagens.Personagem;
             }
             
         }
+
         // Função que verifica se o inimigo morreu
         public void death(){
             if(getVida() < 0){
@@ -129,9 +130,39 @@ import Personagens.Personagem;
             }
         }
 
-        public void gerarInimigoAleatorio(){
-            
+        // Método com ERRO
+        public ArrayList<Inimigos> inimigosArray(){
+            ArrayList<Inimigos> subObj = new ArrayList<>();
+            try{
+                Class<?> [] subClasses = this.getClass().getDeclaredClasses();
+                System.out.println(subClasses.length);
+                for(Class<?> sub : subClasses){
+                    if(Inimigos.class.isAssignableFrom(sub) && !sub.equals(Inimigos.class)){
+                        Inimigos i = (Inimigos) sub.getDeclaredConstructor().newInstance();
+                        subObj.add(i);
+                        System.out.println(i.getNome());
+                    }
+                }
+            } catch(Exception e){
+                System.out.println(e);
+            }
+
+            return subObj;
         }
+
+        // Método que retorna um inimigo aleatório do array de inimigos
+        
+        public Inimigos inimigoEscolhido(ArrayList<Inimigos> subObj){
+            if(subObj.size() == 0){
+                return null;
+            } else {
+            int rng = random.nextInt(subObj.size());
+            return subObj.get(rng);
+            }
+       
+        }
+
+
         
         // Setters and Getters
         public String getNome() {
