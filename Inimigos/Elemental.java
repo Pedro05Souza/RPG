@@ -1,13 +1,15 @@
 package Inimigos;
 import Personagens.Personagem;
 public class Elemental extends Inimigos implements InimigosInterface {
-    
+
         public Elemental(Personagem p){
             super(p.getLevel());
             nome = "Shadow Elemental";
-            vida = 120;
-            dano = 30;
+            vida = 100;
+            dano = 40;
             armadura = 15;
+            xp = 100;
+            nivel = 2;
         }
 
 
@@ -24,6 +26,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
         } 
     }
 
+    @Override
     public void ataque1(Personagem p) {
         int menosQueMetade = (int) ( vida * 0.3 );
         if(p.getVida() > 0 && vida <= menosQueMetade){
@@ -34,7 +37,8 @@ public class Elemental extends Inimigos implements InimigosInterface {
             ataque2(p);
         }
     }
-
+    
+    @Override
     public void ataque2(Personagem p){
         int dmg = dano;
         if(p.getVida() > 0){
@@ -50,6 +54,12 @@ public class Elemental extends Inimigos implements InimigosInterface {
 
     public void setAi(int ai) {
         this.ai = ai;
+    }
+
+
+    @Override
+    public void dropList() {
+        
     }
 
 

@@ -3,6 +3,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
 import Inventario.Itens;
 import Inventario.Inventario;
@@ -12,11 +13,13 @@ import Personagens.Personagem;
 
         protected int vida, dano, armadura, xp, nivel, pontos;
         protected ArrayList<Itens> drops = new ArrayList<>(3); 
+        protected static ArrayList<Inimigos> ObjInimigo = new ArrayList<>();
         protected String nome;
         protected Random random = new Random();
         protected int ai;
-
+        protected Timer timer = new Timer(); 
         private Inventario inv = new Inventario();
+        private static Random r = new Random();
 
 
         public Inimigos(int p){
@@ -57,7 +60,7 @@ import Personagens.Personagem;
             }
         }
 
-        // Função que seta o nivel do inimigo para o player
+        // Função que seta o nivel do inimigo para o player * 2
         public int Scaling(int nivelP){
             int lvlInimigo = getNivel();
             lvlInimigo = nivelP * 2;
@@ -107,6 +110,7 @@ import Personagens.Personagem;
             for (Itens item : drops) {
                 sorteTotal += item.chanceRaridade();
             }
+
             if (sorteTotal >= rng) {
                 for (Itens item : drops) {
                     int diferencaAtual = Math.abs(item.chanceRaridade() - rng);
@@ -130,41 +134,35 @@ import Personagens.Personagem;
             }
         }
 
-        // Método com ERRO
-        public ArrayList<Inimigos> inimigosArray(){
-            ArrayList<Inimigos> subObj = new ArrayList<>();
-            try{
-                Class<?> [] subClasses = this.getClass().getDeclaredClasses();
-                System.out.println(subClasses.length);
-                for(Class<?> sub : subClasses){
-                    if(Inimigos.class.isAssignableFrom(sub) && !sub.equals(Inimigos.class)){
-                        Inimigos i = (Inimigos) sub.getDeclaredConstructor().newInstance();
-                        subObj.add(i);
-                        System.out.println(i.getNome());
-                    }
-                }
-            } catch(Exception e){
-                System.out.println(e);
-            }
-
-            return subObj;
-        }
 
         // Método que retorna um inimigo aleatório do array de inimigos
-        
-        public Inimigos inimigoEscolhido(ArrayList<Inimigos> subObj){
+        public static Inimigos inimigoEscolhido(ArrayList<Inimigos> subObj){
             if(subObj.size() == 0){
+                System.out.println("There are no enemies");
                 return null;
             } else {
-            int rng = random.nextInt(subObj.size());
+            int rng = r.nextInt(subObj.size());
             return subObj.get(rng);
             }
        
         }
 
+        // Método que adiciona um inimigo ao array de inimigos
+        public static void AdicionarInimigo(Inimigos i){
+            ObjInimigo.add(i);
+        }
 
-        
+
+
         // Setters and Getters
+        public static ArrayList<Inimigos> getObjInimigo() {
+            return ObjInimigo;
+        }
+
+        public int tamanhoArray(){
+            return ObjInimigo.size();
+        }
+
         public String getNome() {
             return nome;
         }

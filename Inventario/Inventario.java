@@ -10,7 +10,7 @@ public class Inventario {
     protected int posAtual = -1;
     ArrayList<Itens> itens = new ArrayList<Itens>();
     
-
+    // metodo que adiciona itens
     public void adicionarItem(Itens i){
        if(itens.size() >= MAXITENS){
         System.out.println("Inventory is full");
@@ -24,6 +24,7 @@ public class Inventario {
        }
     }
 
+    // metodo que remove itens
     public void removerItem(int posicao){
         if(posicao > 5 || posicao < 0){
             System.out.println("Invalid Position");
@@ -35,7 +36,7 @@ public class Inventario {
             }
         }
     }
-
+    // metodo que mostra os itens
     public void mostrarItens(){
         if(itens.size() == 0){
             System.out.println("Inventory is empty.");
@@ -46,7 +47,7 @@ public class Inventario {
             }
         }
     }
-
+    // metodo que pega os itens
     public void pegarItem(Itens i){
         if(i != null){
             System.out.println("You just dropped a " + i.getNome() + "!");

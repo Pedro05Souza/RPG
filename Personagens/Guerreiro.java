@@ -4,13 +4,6 @@ import Inimigos.Inimigos;
 
 public class Guerreiro extends Personagem implements PersonagemInterface {
     private int critDmg, sorteAtual;
-
-
-
-     {
-        setAtaque1N("Warrior's Slash");
-        setAtaque2N("Celestial Judgement");
-    }
     
     public Guerreiro(){
         classeC = 'G';
@@ -21,6 +14,8 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         pts = 8;
         armadura = 10;
         sorteAtual = 10;
+        setAtaque1N("Warrior's Slash");
+        setAtaque2N("Celestial Judgement");
     }
     
 

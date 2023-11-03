@@ -7,11 +7,14 @@ public class Itens extends Inventario {
     protected char itemClasse;
     boolean equipado;
 
+
+    // enum para raridade dos itens
     public enum tiposRaridade{
         Common, Uncommon, Rare, Epic, Legendary, Mythic;
         
     }
 
+    // impressão dos itens
     public void efeitosItem(){
         System.out.println("----------------------");
         System.out.println("Position: " + posAtual);

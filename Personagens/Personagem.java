@@ -82,7 +82,8 @@ public abstract class Personagem {
         }
        }
     }
-
+    
+    // Imprime o atributo da classe
     public int getCalculoClasse(Object a, String [] atStrings) throws IllegalArgumentException, IllegalAccessException{
         int valorAtributo = 0;
         Field [] b = a.getClass().getDeclaredFields();

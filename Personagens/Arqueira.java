@@ -5,26 +5,25 @@ import java.util.TimerTask;
 import Inimigos.Inimigos;
 
 public class Arqueira extends Personagem implements PersonagemInterface{
-    private int ArrowsA, Arrows;
+    private int ArrowsD, Arrows;
 
-    public Arqueira(){
+    public Arqueira() {
         classeC = 'A';
         vida = 70;
         dano = 50;
         Arrows = 10;
-        ArrowsA = Arrows;
+        ArrowsD = Arrows;
         level = 1;
         pts = 8;
         armadura = 5;
-    }
-
-    {
         setAtaque1N("Arrow Shot");
         setAtaque2N("Arrow Rain");
     }
 
+
     @Override
     public void atacar(Inimigos i) {
+        recarregarFlechas();
         PersonagemInterface.super.atacar(i);
         int menu = input.nextInt();
         switch(menu){
@@ -40,11 +39,11 @@ public class Arqueira extends Personagem implements PersonagemInterface{
     @Override
     public void ataque1(Inimigos i) {
         int dano = getDano();
-        if(Arrows > 0){
+        System.out.println(ArrowsD);
+        if(ArrowsD > 0){
             System.out.println("Your attack deals: " + i.danoTomadoI(dano) + " damage to " + i.getNome());
-            Arrows--;
+            ArrowsD--;
         } else {
-            recarregarFlechas();
             System.out.println("Insufficient arrows!");
         }
     }
@@ -52,25 +51,25 @@ public class Arqueira extends Personagem implements PersonagemInterface{
     @Override
     public void ataque2(Inimigos i) {
         int dano = getDano();
-        if(ArrowsA >= 5){
+        System.out.println(ArrowsD);
+        if(ArrowsD >= 5){
             int flechasRng = r.nextInt(getNumFlechas());
             int danoTotal = dano * flechasRng;
-            System.out.println("Your character releases an arrow rain. Dealing " + i.danoTomadoI(dano) + " damage to " + i.getNome());
-            ArrowsA -= flechasRng;
+            System.out.println("Your character releases an arrow rain. Dealing " + i.danoTomadoI(danoTotal) + " damage to " + i.getNome());
+            ArrowsD -= flechasRng;
         } else {
-            recarregarFlechas();
             System.out.println("Insufficient arrows!");
         }
     }
 
     public void recarregarFlechas(){
-        int tempoDuracao = 5000;
-        if(ArrowsA < Arrows){
+        int tempoDuracao = 3000;
+        if (ArrowsD < Arrows){
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     System.out.println("Your character reloaded an arrow...");
-                    ArrowsA++;
+                    ArrowsD++;
                 }
             }, tempoDuracao);
             };

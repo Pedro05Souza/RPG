@@ -7,12 +7,6 @@ public class Knight extends Personagem implements PersonagemInterface {
     private int cooldown;
 
 
-    // Seta o nome dos ataques
-    {
-        setAtaque1N("Sword Slash");
-        setAtaque2N("Eternal Vow;");
-    }
-
     public Knight(){
         classeC = 'K';
         dano = 20;
@@ -21,7 +15,9 @@ public class Knight extends Personagem implements PersonagemInterface {
         pts = 8;
         armadura = 30;
         cooldown = 3;
-    }
+        setAtaque1N("Sword Slash");
+        setAtaque2N("Eternal Vow;");
+        }
 
     @Override
     public void atacar(Inimigos i){
@@ -67,6 +63,8 @@ public class Knight extends Personagem implements PersonagemInterface {
         setDano(danoAumentado);
         int tempoDuracao = cooldown * 1000;
         System.out.println("Your character increases the statues of his sword and armor, increasing his damage by " + danoAumentado + " and armor by " + armaduraAumentado + " for " + cooldown + " seconds.");
+        setDano(danoAumentado);
+        setArmadura(armaduraAumentado);
         timer.schedule(new TimerTask() {
             @Override
             public void run(){

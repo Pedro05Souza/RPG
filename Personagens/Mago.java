@@ -7,11 +7,6 @@ import Inimigos.Inimigos;
 
 public class Mago extends Personagem implements PersonagemInterface {
     private int mana, manaTotal, wisdom;
-    
-    {
-        setAtaque1N("Fireball");
-        setAtaque2N("Fire Damage Spell");
-    }
 
     public Mago(){
         classeC = 'M';
@@ -23,6 +18,8 @@ public class Mago extends Personagem implements PersonagemInterface {
         pts = 8;
         armadura = 5; 
         wisdom = 1;
+        setAtaque1N("Fireball");
+        setAtaque2N("Fire Damage Spell");
     }
 
   
@@ -30,6 +27,7 @@ public class Mago extends Personagem implements PersonagemInterface {
     public void atacar(Inimigos i) {
         PersonagemInterface.super.atacar(i);
         int menu = input.nextInt();
+        manaRegen();
         switch(menu){
             case 1:
             ataque1(i);
@@ -84,6 +82,19 @@ public class Mago extends Personagem implements PersonagemInterface {
     }
 
     // Funções que cuidam da mana
+
+    public void manaRegen(){
+        int tempoDuracao = 3000;
+        while (mana < manaTotal){
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println("Your character regenerated mana...");
+                    setMana(getMana() + 1);
+                }
+            }, tempoDuracao);
+            };
+        }
 
     public void reducaoMana(double porcentagem){
         int valorReduzido = (int) Math.max(((int) mana * porcentagem), 0);

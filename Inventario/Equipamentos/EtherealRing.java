@@ -18,9 +18,6 @@ public class EtherealRing extends Itens {
         mana = (int) (.3 * ((Mago) Personagem).getManaTotal());
     }
 
-    {
-        chanceRaridade();
-    }
 
     
 }
