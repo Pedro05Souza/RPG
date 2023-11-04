@@ -5,5 +5,4 @@ public class principal {
         Funcoes f = new Funcoes();
         f.menuPrincipal();
     }
-    
 }

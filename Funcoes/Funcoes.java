@@ -8,17 +8,22 @@ import Personagens.*;
 
 public class Funcoes {
     public static int Rodadas;
-    private static Timer timer = new Timer();
-    private Scanner input = new Scanner(System.in);
-    private Inimigos i = null;
-    private ArrayList<Inimigos> bayo = new ArrayList<>();
-    private Inventario inv = new Inventario();
-    Personagem p = escolherClasse();
+    private static Timer timer;
+    private Scanner input;
+    private Inimigos i;
+    private ArrayList<Inimigos> bayo;
+    private Inventario inv;
+    private Personagem p;
 
-    //Função a implementar de adicionar inimigos à lista
-    private void listaInimigos(Class<?> datte){
-        
+    public Funcoes(){
+        timer = new Timer();
+        input = new Scanner(System.in);
+        i = null;
+        bayo = new ArrayList<>();
+        inv = new Inventario();
+        p = escolherClasse();
     }
+
 
     // Função que faz as lutas entre os Personagens e Inimigos
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException{
@@ -31,6 +36,8 @@ public class Funcoes {
                 e.printStackTrace();
             }
         }
+        i.death(p);
+        p.death();
         Rodadas = 0;
     }
 
@@ -92,6 +99,41 @@ public class Funcoes {
     }
     // Função que mostra o menu principal    
     public void menuPrincipal() throws NoSuchMethodException, IllegalAccessException{
+        boolean running = true;
+        while(running){
+            int menu = menu();
+            switch (menu) {
+                case 1:
+                inimigosLista();
+                i = Inimigos.inimigoEscolhido(Inimigos.getObjInimigo());
+                batalha(i, p);
+                break;
+                case 2:
+                inv.mostrarItens();
+                break;
+                case 3:
+                p.status();
+                break;
+                case 4:
+                p.setAtributos(p);
+                break;
+                case 5:
+                // falta fazer a loja
+                break;
+                case 6:
+                System.out.println("Game saved.");
+                running = false;
+                System.exit(0);
+                break;
+                default:
+                break;
+            }
+        }
+
+
+    }
+
+    public int menu(){
         System.out.println("--------------------------------");
         System.out.println("Main Menu");
         System.out.println("[1]. Battle Enemies");
@@ -101,34 +143,6 @@ public class Funcoes {
         System.out.println("[5]. Shop");
         System.out.println("[6]. Save and leave");
         System.out.println("--------------------------------");
-        int menu = input.nextInt();
-        switch (menu) {
-            case 1:
-            inimigosLista();
-            i = Inimigos.inimigoEscolhido(Inimigos.getObjInimigo());
-            batalha(i, p);
-            break;
-            case 2:
-            inv.mostrarItens();
-            break;
-            case 3:
-            p.status();
-            break;
-            case 4:
-            p.setAtributos(p);
-            break;
-            case 5:
-            // falta fazer a loja
-            break;
-            case 6:
-            System.out.println("Game saved.");
-            break;
-            default:
-            break;
-        }
-
-
+        return input.nextInt();
     }
-
-    
 }
