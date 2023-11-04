@@ -1,26 +1,23 @@
 package Funcoes;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Scanner;
-
-import Inimigos.Elemental;
-import Inimigos.Golem;
-import Inimigos.Inimigos;
+import java.util.*;
+import Inimigos.*;
 import Inventario.Inventario;
-import Personagens.Arqueira;
-import Personagens.Guerreiro;
-import Personagens.Knight;
-import Personagens.Mago;
-import Personagens.Personagem;
+import Personagens.*;
 
 public class Funcoes {
     public static int Rodadas;
     private Scanner input = new Scanner(System.in);
     private Inimigos i = null;
+    private ArrayList<Inimigos> bayo = new ArrayList<>();
     private Inventario inv = new Inventario();
     Personagem p = escolherClasse();
 
-
+    //Função a implementar de adicionar inimigos à lista
+    private void listaInimigos(Class<?> datte){
+        
+    }
 
     // Função que faz as lutas entre os Personagens e Inimigos
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException{

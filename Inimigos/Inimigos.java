@@ -21,7 +21,6 @@ import Personagens.Personagem;
         private Inventario inv = new Inventario();
         private static Random r = new Random();
 
-
         public Inimigos(int p){
             setPontos(Scaling(p));
         }

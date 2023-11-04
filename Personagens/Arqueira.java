@@ -61,7 +61,8 @@ public class Arqueira extends Personagem implements PersonagemInterface{
             System.out.println("Insufficient arrows!");
         }
     }
-
+    
+    //Recarrega as flechas da arqueira
     public void recarregarFlechas(){
         int tempoDuracao = 3000;
         if (ArrowsD < Arrows){

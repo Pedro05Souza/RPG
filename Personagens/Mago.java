@@ -49,43 +49,17 @@ public class Mago extends Personagem implements PersonagemInterface {
         }
     }
 
+    //Falta fazer (Todo errado)
     @Override
     public void ataque2(Inimigos i){
-       int dano = getDano();
-    if (mana >= manaNecessaria(0.5)){
-        System.out.println("Your character releases fire damage spell. Dealing " + dano + " damage to " + i.getNome());
-        int duracaoAtaque = 10000; 
-        int intervaloDano = 1000; 
-        int danoFogo = (int) Math.sqrt(dano);
-        int danoFinal = Math.max(danoFogo, 1);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            long endTime = System.currentTimeMillis() + duracaoAtaque;
-            @Override
-            public void run() {
-                while (System.currentTimeMillis() < endTime) {
-                    i.danoTomadoI(danoFinal);
-                    try {
-                        Thread.sleep(intervaloDano);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }, 0, intervaloDano);
-        reducaoMana(0.5);
 
-    } else {
-        System.out.println("Insufficient mana");
-    }
-    
     }
 
     // Funções que cuidam da mana
 
     public void manaRegen(){
         int tempoDuracao = 3000;
-        while (mana < manaTotal){
+        if (mana < manaTotal){
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
