@@ -1,5 +1,5 @@
 # RPG
-RPG de texto básico em Java, posteriormente a ser implementado com GUI
-Developers:
-@Pedro05Souza
-@AlexiusMD
+RPG de texto básico em Java, posteriormente a ser implementado com GUI <br />
+Developers: <br />
+@Pedro05Souza  <br />
+@AlexiusMD  <br />
