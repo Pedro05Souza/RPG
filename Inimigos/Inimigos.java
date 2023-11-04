@@ -7,7 +7,7 @@ import java.util.Timer;
 
 import Inventario.Itens;
 import Inventario.Inventario;
-import Personagens.Personagem;
+import Personagens.*;
 
     public abstract class Inimigos {
 
@@ -120,16 +120,19 @@ import Personagens.Personagem;
                 }
             }
             if (itemEscolhido != null) {
-                inv.pegarItem(itemEscolhido);
+                inv.pegaritemInimigo(itemEscolhido);
             }
             
         }
 
         // Função que verifica se o inimigo morreu
-        public void death(){
+        public void death(Personagem p){
             if(getVida() < 0){
                 System.out.println("You have defeated " + getNome() + "!");
+                System.out.println("You have gained " + getXp() + " XP!");
                 dropItem();
+                p.setXp(p.getXp() + getXp());
+                
             }
         }
 

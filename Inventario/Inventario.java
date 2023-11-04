@@ -36,6 +36,7 @@ public class Inventario {
             }
         }
     }
+
     // metodo que mostra os itens
     public void mostrarItens(){
         if(itens.size() == 0){
@@ -47,8 +48,9 @@ public class Inventario {
             }
         }
     }
-    // metodo que pega os itens
-    public void pegarItem(Itens i){
+
+    // metodo que pega os itens do Inimigo que morreu
+    public void pegaritemInimigo(Itens i){
         if(i != null){
             System.out.println("You just dropped a " + i.getNome() + "!");
             System.out.println("Rarity: " + i.getTiposRaridade());
@@ -63,8 +65,43 @@ public class Inventario {
                 System.out.println("You left the item.");
                 break;
             }
-            
+        }
+    }
 
+    // metodo que retorna o objeto no indice que o usuario digitar
+    public Itens getItem(){
+        System.out.println("Insert the position of the item: ");
+        int posicao = input.nextInt();
+        Itens i = null;
+        if(posicao > 5 || posicao < 0){
+            System.out.println("Invalid Position");
+            return null;
+        } else {
+            for (Itens item : itens) {
+                if (itens.indexOf(item) == posicao) {
+                    i = item;
+                    break;
+                }
+            }
+        }
+        return i;
+
+    }
+
+    public void equiparItem(){
+        // falta fazer
+    }
+
+    public void menuInventario(){
+        mostrarItens();
+        System.out.println("[1]. Equip Item;");
+        System.out.println("[2]. Remove Item;");
+        System.out.println("[3]. Leave;");
+        int opcao = input.nextInt();
+        switch(opcao){
+            case 1:
+            Itens i = getItem();
+            // fata fazer
         }
     }
 }

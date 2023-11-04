@@ -2,6 +2,7 @@ package Personagens;
 import java.util.Scanner;
 import java.util.Timer;
 
+import Funcoes.*;
 import Inimigos.Inimigos;
 
 import java.lang.reflect.Field;
@@ -42,7 +43,7 @@ public abstract class Personagem {
         System.out.println("Level: " + getLevel());
         System.out.println("XP: " + getXp());
         System.out.println("Attribute points: " + getPts());
-        System.out.println(getClasse(classes) + ": " + getCalculoClasse(this, classes));
+        System.out.println(getClasse(classes) + ": " + getClasse(this));
     }
 
     // Pega a classe do jogador
@@ -83,22 +84,6 @@ public abstract class Personagem {
        }
     }
     
-    // Imprime o atributo da classe
-    public int getCalculoClasse(Object a, String [] atStrings) throws IllegalArgumentException, IllegalAccessException{
-        int valorAtributo = 0;
-        Field [] b = a.getClass().getDeclaredFields();
-        for(int i = 0; i < b.length; i ++){
-            for(int j = 0; j < atStrings.length; j++){
-                if(b[i].getName().equalsIgnoreCase(atStrings[j])){
-                    b[i].setAccessible(true);
-                    valorAtributo = b[i].getInt(a);
-                    return valorAtributo;
-                    
-                }
-            }
-        }
-        return valorAtributo;
-    }
 
     // Pega o método na interface de ataque.
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -182,7 +167,13 @@ public abstract class Personagem {
                 }
             }
         }
-        }   
+    }
+    // Função que cura o jogador: FALTA FAZER, precisa de uma variável q pega o limite da vida do jogador
+    public void cura() {
+        if(getVida() > 0 && getVida() < 100 && Funcoes.Rodadas > 0){
+
+        }
+    }
 
     // Menu de ataque do jogador
     public static void menuAtaque(){
@@ -190,6 +181,7 @@ public abstract class Personagem {
         System.out.println("Choose your character's attacks: ");
         System.out.println("[1]. " + getAtaque1N());
         System.out.println("[2]. " + getAtaque2N());
+        System.out.println("--------------------------------");
     }
 
     public void death(){

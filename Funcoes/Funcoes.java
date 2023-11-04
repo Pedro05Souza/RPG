@@ -1,5 +1,5 @@
 package Funcoes;
-
+import java.util.Timer;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import Inimigos.*;
@@ -8,6 +8,7 @@ import Personagens.*;
 
 public class Funcoes {
     public static int Rodadas;
+    private static Timer timer = new Timer();
     private Scanner input = new Scanner(System.in);
     private Inimigos i = null;
     private ArrayList<Inimigos> bayo = new ArrayList<>();
@@ -34,9 +35,17 @@ public class Funcoes {
     }
 
     // Função que limpa o console
-    public void limpaConsole(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+    public static void limpaConsole(){
+        int delay = 2500;
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+            
+        }, delay);
     }
     
     // Função que adiciona os inimigos na lista
