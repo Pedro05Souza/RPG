@@ -1,7 +1,7 @@
 package Inventario.Equipamentos;
-import Inventario.Itens;
+import Inventario.Item;
 
-public class WarriorSword extends Itens {
+public class WarriorSword extends Item {
 
     public WarriorSword(){
         nome = "Warrior Sword";

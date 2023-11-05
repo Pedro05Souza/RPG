@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 
-import Inventario.Itens;
+import Inventario.Item;
 import Inventario.Inventario;
 import Personagens.*;
 
     public abstract class Inimigos {
 
         protected int vida, dano, armadura, xp, nivel, pontos;
-        protected ArrayList<Itens> drops = new ArrayList<>(3); 
+        protected ArrayList<Item> drops = new ArrayList<>(3); 
         protected static ArrayList<Inimigos> ObjInimigo = new ArrayList<>();
         protected String nome;
         protected Random random = new Random();
@@ -105,13 +105,13 @@ import Personagens.*;
             int rng = random.nextInt(101);
             int sorteTotal = 0;
             int menorDiferenca = Integer.MAX_VALUE;
-            Itens itemEscolhido = null;
-            for (Itens item : drops) {
+            Item itemEscolhido = null;
+            for (Item item : drops) {
                 sorteTotal += item.chanceRaridade();
             }
 
             if (sorteTotal >= rng) {
-                for (Itens item : drops) {
+                for (Item item : drops) {
                     int diferencaAtual = Math.abs(item.chanceRaridade() - rng);
                     if (Math.abs(menorDiferenca - rng) > diferencaAtual) {
                         menorDiferenca = item.chanceRaridade() - rng;

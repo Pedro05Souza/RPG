@@ -8,16 +8,13 @@ public class Inventario {
     private Personagem p;
     private Scanner input = new Scanner(System.in);
     protected int posAtual = -1;
-    ArrayList<Itens> itens = new ArrayList<Itens>();
+    ArrayList<Item> itens = new ArrayList<Item>();
     
     // metodo que adiciona itens
-    public void adicionarItem(Itens i){
+    public void adicionarItem(Item i){
        if(itens.size() >= MAXITENS){
         System.out.println("Inventory is full");
        } 
-       if(p.getClasseC() != i.getItemClasse()){
-        System.out.println("This item is not available for your class.");
-       }
        else {
         itens.add(i);
         posAtual = itens.size();
@@ -29,7 +26,7 @@ public class Inventario {
         if(posicao > 5 || posicao < 0){
             System.out.println("Invalid Position");
         }
-        for (Itens item : itens) {
+        for (Item item : itens) {
             if (itens.indexOf(item) == posicao) {
                 itens.remove(item);
                 break;
@@ -39,18 +36,13 @@ public class Inventario {
 
     // metodo que mostra os itens
     public void mostrarItens(){
-        if(itens.size() == 0){
-            System.out.println("Inventory is empty.");
-        }
-        else{
-            for(Itens i : itens){
+            for(Item i : itens){
                i.efeitosItem();
             }
         }
-    }
 
     // metodo que pega os itens do Inimigo que morreu
-    public void pegaritemInimigo(Itens i){
+    public void pegaritemInimigo(Item i){
         if(i != null){
             System.out.println("You just dropped a " + i.getNome() + "!");
             System.out.println("Rarity: " + i.getTiposRaridade());
@@ -69,15 +61,13 @@ public class Inventario {
     }
 
     // metodo que retorna o objeto no indice que o usuario digitar
-    public Itens getItem(){
-        System.out.println("Insert the position of the item: ");
-        int posicao = input.nextInt();
-        Itens i = null;
+    public Item getItem(int posicao){
+        Item i = null;
         if(posicao > 5 || posicao < 0){
             System.out.println("Invalid Position");
             return null;
         } else {
-            for (Itens item : itens) {
+            for (Item item : itens) {
                 if (itens.indexOf(item) == posicao) {
                     i = item;
                     break;
@@ -88,20 +78,68 @@ public class Inventario {
 
     }
 
-    public void equiparItem(){
-        // falta fazer
+    public void equiparItem(Item i){
+       if(i.equipado == true){
+        System.out.println("Item already equipped.");
+       } 
+       if(p.getClasseC() == i.getItemClasse()){
+        i.equipado = true;
+        p.setDano(p.getDano() + i.getDano());
+        p.setArmadura(p.getArmadura() + i.getArmadura());
+        p.setVida(p.getVida() + i.getVida());
+        System.out.println("Item equipped.");
+       } else {
+        System.out.println("Item can't be equipped. Invalid class");
+       }
     }
 
     public void menuInventario(){
+        if(itens.size() == 0){
+            System.out.println("Inventory is empty");
+        } else {
+        boolean running = true;
+        while (running) {
         mostrarItens();
-        System.out.println("[1]. Equip Item;");
-        System.out.println("[2]. Remove Item;");
-        System.out.println("[3]. Leave;");
+        System.out.println("[1]. Click here to select an item from your inventory");
+        System.out.println("[2]. Exit");
         int opcao = input.nextInt();
-        switch(opcao){
+        switch (opcao) {
             case 1:
-            Itens i = getItem();
-            // fata fazer
+                System.out.println("Insert the item's position:");
+                int posicao = input.nextInt();
+                Item i = getItem(posicao);
+                System.out.println("[1]. Equip item");
+                System.out.println("[2]. Drop item");
+                System.out.println("[3]. Exit");
+                int opcao2 = input.nextInt();
+                switch (opcao2) {
+                    case 1:
+                    equiparItem(i);
+                    break;
+                    case 2:
+                    removerItem(posicao);
+                    break;
+                    case 3:
+                    System.out.println("Exiting...");
+                    running = false;
+                    break;
+                
+                    default:
+                    System.out.println("Invalid option;");
+                        break;
+                }
+                break;
+                case 2:
+                System.out.println("Exiting...");
+                running = false;
+                break;
+        
+            default:
+            System.out.println("Invalid option");
+                break;
         }
+       
     }
+}
+}
 }

@@ -109,7 +109,7 @@ public class Funcoes {
                 batalha(i, p);
                 break;
                 case 2:
-                inv.mostrarItens();
+                inv.menuInventario();
                 break;
                 case 3:
                 p.status();

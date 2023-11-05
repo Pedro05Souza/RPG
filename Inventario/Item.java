@@ -1,6 +1,6 @@
 package Inventario;
 
-public class Itens extends Inventario {
+public class Item extends Inventario {
     protected String nome, descricao;
     protected tiposRaridade tiposRaridade;
     protected int dano, vida, armadura, valor;
