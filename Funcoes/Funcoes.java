@@ -5,6 +5,7 @@ import java.util.*;
 import Inimigos.*;
 import Inventario.Inventario;
 import Personagens.*;
+import cores.cores;
 
 public class Funcoes {
     public static int Rodadas;
@@ -36,19 +37,20 @@ public class Funcoes {
                 e.printStackTrace();
             }
         }
+        limpaConsole();
         i.death(p);
         p.death();
         Rodadas = 0;
     }
 
-    // Função que limpa o console
+    // Função que limpa o console a cada 3 segundos
     public static void limpaConsole(){
         int delay = 2500;
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                System.out.print("\033[H\033[2J");
+                System.out.println("\033[H\033[2J");
                 System.out.flush();
             }
             
@@ -94,6 +96,7 @@ public class Funcoes {
                 System.out.println("Invalid option.");
                 break;
         }
+        cores.setGreen("You have chosen the " + p.getClasse(p) + " class.");
         p.getClasse(p);
         return p;
     }
@@ -101,6 +104,13 @@ public class Funcoes {
     public void menuPrincipal() throws NoSuchMethodException, IllegalAccessException{
         boolean running = true;
         while(running){
+            System.out.println("What do you wish to do?");
+            System.out.println("[1]. Battle Enemies");
+            System.out.println("[2]. Inventory");
+            System.out.println("[3]. Character");
+            System.out.println("[4]. Skill Tree");
+            System.out.println("[5]. Shop");
+            System.out.println("[6]. Save and leave");
             int menu = menu();
             switch (menu) {
                 case 1:
@@ -121,7 +131,7 @@ public class Funcoes {
                 // falta fazer a loja
                 break;
                 case 6:
-                System.out.println("Game saved.");
+                cores.setGreen("Saving and leaving.");
                 running = false;
                 System.exit(0);
                 break;

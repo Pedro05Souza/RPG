@@ -4,6 +4,7 @@ import java.util.Timer;
 
 import Funcoes.*;
 import Inimigos.Inimigos;
+import cores.cores;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -65,8 +66,7 @@ public abstract class Personagem {
             setLevel(nivelNovo);
             setXp(0);
             setPts(getPts() + atributos);
-            System.out.println("Your character just leveled up, current level: " + getLevel() 
-            + "Attribute points rewarded: " + getPts());
+            cores.setGreen("Your character just leveled up, current level: " + getLevel() + " and you have more " + getPts() + " points to distribute.");
         }
     }
 
@@ -111,8 +111,6 @@ public abstract class Personagem {
         return dano;
     }
 
-
-
     // seta os novos atributos do jogador com base nos pontos
     public void setAtributos(Personagem p) throws IllegalArgumentException, IllegalAccessException{
         if(getPts() > 0){
@@ -137,7 +135,7 @@ public abstract class Personagem {
                 System.out.println("How many points do you wish to use? Points remaining: " + getPts());
                 int ptsDistri = input.nextInt();
                 if(ptsDistri > PontosAtributos){
-                    System.out.println("Invalid number of points.");
+                    cores.setRed("You don't have enough points.");
                     break;
                 } else {
                 switch(menu){
@@ -156,8 +154,12 @@ public abstract class Personagem {
                     case 4:
                     calculoClasse(p, classes);
                     break;
+                    case 5:
+                    cores.setGreen("Returning to the main menu.");
+                    continuar = false;
+                    break;
                     default:
-                    System.out.println("Invalid option.");
+                    cores.setRed("Invalid option.");
                     break;
                 }
                 p.setVida(danoAtual + vidaFinal);
@@ -186,7 +188,7 @@ public abstract class Personagem {
 
     public void death(){
         if(getVida() <= 0){
-        System.out.println("Your character has fallen."); 
+        cores.setRed("Your character has fallen.");
         System.exit(0);      
     }
     }

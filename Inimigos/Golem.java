@@ -9,9 +9,9 @@ public class Golem extends Inimigos implements InimigosInterface {
     public Golem(Personagem p){
         super(p.getLevel());
         nome = "Golem";
-        vida = 150;
-        dano = 30;
-        armadura = 40;
+        vida = 100;
+        dano = 15;
+        armadura = 35;
         xp = 100;
         nivel = 5;
     }
