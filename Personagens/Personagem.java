@@ -44,7 +44,7 @@ public abstract class Personagem {
         System.out.println("Level: " + getLevel());
         System.out.println("XP: " + getXp());
         System.out.println("Attribute points: " + getPts());
-        System.out.println(getClasse(classes) + ": " + getClasse(this));
+        System.out.println(getClasse(classes) + ": " + getCalculoClasse(this, classes));
     }
 
     // Pega a classe do jogador
@@ -84,6 +84,7 @@ public abstract class Personagem {
        }
     }
     
+    
 
     // Pega o método na interface de ataque.
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -97,6 +98,23 @@ public abstract class Personagem {
                 }
             }
         }
+    }
+
+     // Imprime o atributo da classe
+     public int getCalculoClasse(Object a, String [] atStrings) throws IllegalArgumentException, IllegalAccessException{
+        int valorAtributo = 0;
+        Field [] b = a.getClass().getDeclaredFields();
+        for(int i = 0; i < b.length; i ++){
+            for(int j = 0; j < atStrings.length; j++){
+                if(b[i].getName().equalsIgnoreCase(atStrings[j])){
+                    b[i].setAccessible(true);
+                    valorAtributo = b[i].getInt(a);
+                    return valorAtributo;
+
+                }
+            }
+        }
+        return valorAtributo;
     }
 
     // Função que o jogador leva dano
