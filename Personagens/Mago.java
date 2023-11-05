@@ -52,8 +52,23 @@ public class Mago extends Personagem implements PersonagemInterface {
     //Falta fazer (Todo errado)
     @Override
     public void ataque2(Inimigos i){
+        if(mana >= manaNecessaria(.5)){
+            int dano = getDano();
+            int fogoDuracao = 5000;
+            int danoFogo = (int) Math.sqrt(dano);
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    while (System.currentTimeMillis() < fogoDuracao) {
+                    System.out.println("Teste");
+                    i.danoTomadoI(danoFogo);
+                    }
+                }
+            }, fogoDuracao);
+              reducaoMana(.5);  
+            };
+        }
 
-    }
 
     // Funções que cuidam da mana
 

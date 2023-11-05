@@ -61,11 +61,10 @@ public class Funcoes {
     public void inimigosLista(){
         Elemental e = new Elemental(p);
         Golem g = new Golem(p);
-
         Inimigos.AdicionarInimigo(e);
         Inimigos.AdicionarInimigo(g);
-
     }
+
     // Função que escolhe a classe do jogador
     public Personagem escolherClasse(){
         Personagem p = null;
@@ -96,7 +95,7 @@ public class Funcoes {
                 System.out.println("Invalid option.");
                 break;
         }
-        cores.setGreen("You have chosen the " + p.getClasse(p) + " class.");
+        cores.setGreen("You have successfully chosen your class.");
         p.getClasse(p);
         return p;
     }
