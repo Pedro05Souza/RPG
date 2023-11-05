@@ -45,7 +45,7 @@ public class Funcoes {
 
     // Função que limpa o console a cada 3 segundos
     public static void limpaConsole(){
-        int delay = 2500;
+        int delay = 4000;
         timer.schedule(new TimerTask() {
 
             @Override
@@ -103,13 +103,6 @@ public class Funcoes {
     public void menuPrincipal() throws NoSuchMethodException, IllegalAccessException{
         boolean running = true;
         while(running){
-            System.out.println("What do you wish to do?");
-            System.out.println("[1]. Battle Enemies");
-            System.out.println("[2]. Inventory");
-            System.out.println("[3]. Character");
-            System.out.println("[4]. Skill Tree");
-            System.out.println("[5]. Shop");
-            System.out.println("[6]. Save and leave");
             int menu = menu();
             switch (menu) {
                 case 1:
