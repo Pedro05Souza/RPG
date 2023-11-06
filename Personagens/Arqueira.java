@@ -78,6 +78,7 @@ public class Arqueira extends Personagem implements PersonagemInterface{
 
 
     // getters e setters
+    
     public int getNumFlechas() {
         return Arrows;
     }

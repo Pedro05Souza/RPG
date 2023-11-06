@@ -10,7 +10,6 @@ public class Elemental extends Inimigos implements InimigosInterface {
             armadura = 15;
             xp = 100;
             nivel = 2;
-            Funcoes.Funcoes.inimigos.add(this);
         }
 
 

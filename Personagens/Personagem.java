@@ -189,11 +189,11 @@ public abstract class Personagem {
         }
     }
     // Função que cura o jogador: FALTA FAZER, precisa de uma variável q pega o limite da vida do jogador
-    public void cura() {
-        if(getVida() > 0 && getVida() < 100 && Funcoes.Rodadas > 0){
+  //  public void cura() {
+       // if(getVida() > 0 && getVida() < 100 && Funcoes.Rodadas > 0){
 
-        }
-    }
+      //  }
+   // }
 
     // Menu de ataque do jogador
     public static void menuAtaque(){
@@ -203,6 +203,7 @@ public abstract class Personagem {
         System.out.println("[2]. " + getAtaque2N());
         System.out.println("--------------------------------");
     }
+
 
     public void death(){
         if(getVida() <= 0){
