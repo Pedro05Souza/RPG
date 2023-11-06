@@ -122,6 +122,16 @@ import cores.cores;
             
         }
 
+        public void hpInimigo(){
+            int vida = getVida();
+            int vidaPorcentagem = (int) (vida * 0.3);
+            if(vida < vidaPorcentagem){
+                cores.setRed(getNome() +" Health: " + getVida());
+            } else {
+                cores.setGreen( getNome() + " Health: " + getVida());
+            }
+        }
+
         // Função que verifica se o inimigo morreu
         public void death(Personagem p){
             if(getVida() < 0){

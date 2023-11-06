@@ -10,7 +10,8 @@ public class Arqueira extends Personagem implements PersonagemInterface{
 
     public Arqueira() {
         classeC = 'A';
-        vida = 70;
+        vidaMax = 70;
+        vida = vidaMax;
         dano = 50;
         Arrows = 10;
         ArrowsD = Arrows;

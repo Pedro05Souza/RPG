@@ -13,7 +13,8 @@ public class Knight extends Personagem implements PersonagemInterface {
     public Knight(){
         classeC = 'K';
         dano = 20;
-        vida = 100;
+        vidaMax = 100;
+        vida = vidaMax;
         level = 1;
         pts = 8;
         armadura = 30;

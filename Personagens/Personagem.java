@@ -15,7 +15,7 @@ import java.util.Random;
  * Superclasse de todos os Personagens a serem criados
  */
 public abstract class Personagem {
-    protected int vida, xp, dano, armadura, level, pts;
+    protected int vida, vidaMax, xp, dano, armadura, level, pts;
     protected static String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
@@ -203,6 +203,16 @@ public abstract class Personagem {
         System.out.println("--------------------------------");
     }
 
+    public void hpJogador(){
+        int vida = getVida();
+        int vidaPorcentagem = (int) (vidaMax * 0.3);
+        if(vida < vidaPorcentagem){
+            cores.setRed("Your Health: " + getVida() + "/" + getVidaMax());
+        } else {
+            cores.setGreen("Your Health: " + getVida());
+        }
+    }
+
 
     public void death(){
         if(getVida() <= 0){
@@ -290,6 +300,15 @@ public abstract class Personagem {
     public void setClasseC(char classeC) {
         this.classeC = classeC;
     }
+
+    public int getVidaMax() {
+        return vidaMax;
+    }
+
+    public void setVidaMax(int vidaMax) {
+        this.vidaMax = vidaMax;
+    }
+    
     
 
 }
