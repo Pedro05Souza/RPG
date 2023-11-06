@@ -14,6 +14,7 @@ public class Golem extends Inimigos implements InimigosInterface {
         armadura = 35;
         xp = 100;
         nivel = 5;
+        
     }
 
     @Override

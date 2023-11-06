@@ -123,7 +123,6 @@ public class Inventario {
                     System.out.println("Exiting...");
                     running = false;
                     break;
-                
                     default:
                     System.out.println("Invalid option;");
                         break;

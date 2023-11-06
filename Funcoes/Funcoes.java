@@ -1,6 +1,6 @@
 package Funcoes;
-import java.util.Timer;
 import java.lang.reflect.InvocationTargetException;
+import java.util.stream.*;
 import java.util.*;
 import Inimigos.*;
 import Inventario.Inventario;
@@ -12,7 +12,6 @@ public class Funcoes {
     private static Timer timer;
     private Scanner input;
     private Inimigos i;
-    private ArrayList<Inimigos> bayo;
     private Inventario inv;
     private Personagem p;
 
@@ -20,7 +19,6 @@ public class Funcoes {
         timer = new Timer();
         input = new Scanner(System.in);
         i = null;
-        bayo = new ArrayList<>();
         inv = new Inventario();
         p = escolherClasse();
     }
@@ -28,6 +26,8 @@ public class Funcoes {
 
     // Função que faz as lutas entre os Personagens e Inimigos
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException{
+        i.setAtributosInimigo();
+        i.imprimeInimigoBatalha();
         while(p.getVida() > 0 && i.getVida() > 0){
             try {
                 Rodadas++;
@@ -43,11 +43,10 @@ public class Funcoes {
         Rodadas = 0;
     }
 
-    // Função que limpa o console a cada 3 segundos
+    // Função que limpa o console a cada 4 segundos
     public static void limpaConsole(){
         int delay = 4000;
         timer.schedule(new TimerTask() {
-
             @Override
             public void run() {
                 System.out.println("\033[H\033[2J");
@@ -56,13 +55,21 @@ public class Funcoes {
             
         }, delay);
     }
-    
+
+   // public List<?> getPackageInimigo() {
+   //     List<?> listaPackage;
+   //     try (ScanResult scanResult = new ClassGraph().enableAllInfo().whitelistPackages("Inimigos").scan()) {
+    //        listaPackage = scanResult.getAllClasses().loadClasses();
+   //     }
+
+  //  }
+
     // Função que adiciona os inimigos na lista
-    public void inimigosLista(){
-        Elemental e = new Elemental(p);
-        Golem g = new Golem(p);
-        Inimigos.AdicionarInimigo(e);
-        Inimigos.AdicionarInimigo(g);
+    public List<Inimigos> inimigosLista(List<?> inimigos){
+        return inimigos.stream()
+                .filter(i -> i instanceof Inimigos)
+                .map(i -> (Inimigos) i)
+                .collect(Collectors.toList());
     }
 
     // Função que escolhe a classe do jogador
@@ -106,7 +113,7 @@ public class Funcoes {
             int menu = menu();
             switch (menu) {
                 case 1:
-                inimigosLista();
+                // inimigosLista();
                 i = Inimigos.inimigoEscolhido(Inimigos.getObjInimigo());
                 batalha(i, p);
                 break;

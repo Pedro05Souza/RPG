@@ -8,9 +8,9 @@ import java.util.Timer;
 import Inventario.Item;
 import Inventario.Inventario;
 import Personagens.*;
+import cores.cores;
 
     public abstract class Inimigos {
-
         protected int vida, dano, armadura, xp, nivel, pontos;
         protected ArrayList<Item> drops = new ArrayList<>(3); 
         protected static ArrayList<Inimigos> ObjInimigo = new ArrayList<>();
@@ -27,7 +27,7 @@ import Personagens.*;
 
         // Função que seta os métodos do inimigo pegando o level do player * 8
         public void setPontos(int nivel) {
-            int FormulaPonto = nivel * 8;
+            int FormulaPonto = nivel * 4;
             int FormulaXp = nivel * 40;
             pontos = FormulaPonto;
             setXp(FormulaXp);
@@ -93,7 +93,6 @@ import Personagens.*;
                     pontos--;
                     break;
                 }
-
             }
             setVida(vidaAtual + vidaFinal);
             setDano(danoAtual + danoFinal);
@@ -109,7 +108,6 @@ import Personagens.*;
             for (Item item : drops) {
                 sorteTotal += item.chanceRaridade();
             }
-
             if (sorteTotal >= rng) {
                 for (Item item : drops) {
                     int diferencaAtual = Math.abs(item.chanceRaridade() - rng);
@@ -146,7 +144,15 @@ import Personagens.*;
             int rng = r.nextInt(subObj.size());
             return subObj.get(rng);
             }
-       
+        }
+
+        // Método que imprime o inimigo na batalha
+        public void imprimeInimigoBatalha(){
+            cores.setYellow("You are fighting " + getNome() + "!");
+            cores.setYellow("HP: " + getVida());
+            cores.setYellow("Damage: " + getDano());
+            cores.setYellow("Armor: " + getArmadura());
+            cores.setYellow("Level: " + getNivel());
         }
 
         // Método que adiciona um inimigo ao array de inimigos
