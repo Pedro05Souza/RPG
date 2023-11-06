@@ -2,6 +2,9 @@ package Personagens;
 import java.util.TimerTask;
 import Inimigos.Inimigos;
 
+/*
+ * Classe da personagem Knight
+ */
 public class Knight extends Personagem implements PersonagemInterface {
     private final int statusIncrease = 40;
     private int cooldown;
@@ -19,6 +22,7 @@ public class Knight extends Personagem implements PersonagemInterface {
         setAtaque2N("Eternal Vow;");
         }
 
+    //Seleciona o tipo de ataque
     @Override
     public void atacar(Inimigos i){
         PersonagemInterface.super.atacar(i);
@@ -33,12 +37,14 @@ public class Knight extends Personagem implements PersonagemInterface {
         }
     }
 
+    //Executa o primeiro tipo de ataque
     @Override
     public void ataque1(Inimigos i){
         int dano = getDano();
         System.out.println("Your character deals " + i.danoTomadoI(dano) +  " damage to " + i.getNome());
     }
 
+    //Executa o segundo tipo de ataque
     @Override
     public void ataque2(Inimigos i){
         int rng = (int) (Math.random() * 100);
@@ -53,7 +59,6 @@ public class Knight extends Personagem implements PersonagemInterface {
     }
     
     // Aumenta o status da classe Knight por um tempo
-
     public void aumentoStatus(){
         int danoOriginal = getDano();
         int armaduraOriginal = getArmadura();

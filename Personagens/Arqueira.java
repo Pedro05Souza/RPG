@@ -1,9 +1,10 @@
 package Personagens;
-
 import java.util.TimerTask;
-
 import Inimigos.Inimigos;
 
+/*
+ * Classe da personagem arqueira
+ */
 public class Arqueira extends Personagem implements PersonagemInterface{
     private int ArrowsD, Arrows;
 
@@ -20,7 +21,7 @@ public class Arqueira extends Personagem implements PersonagemInterface{
         setAtaque2N("Arrow Rain");
     }
 
-
+    //Método para seleção de ataque
     @Override
     public void atacar(Inimigos i) {
         recarregarFlechas();
@@ -35,7 +36,8 @@ public class Arqueira extends Personagem implements PersonagemInterface{
             break;
         }
     }
-
+    
+    //Executa o primeiro tipo de ataque
     @Override
     public void ataque1(Inimigos i) {
         int dano = getDano();
@@ -48,6 +50,7 @@ public class Arqueira extends Personagem implements PersonagemInterface{
         }
     }
 
+    //Executa o segundo tipo de ataque
     @Override
     public void ataque2(Inimigos i) {
         int dano = getDano();

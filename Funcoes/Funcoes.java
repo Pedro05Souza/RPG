@@ -6,11 +6,14 @@ import Inimigos.*;
 import Inventario.Inventario;
 import Personagens.*;
 import cores.cores;
-
+/*
+ * Classe principal de funções que rodam durante a execução do jogo
+ */
 public class Funcoes {
     public static int Rodadas;
     private static Timer timer;
     private Scanner input;
+    private List<Inimigos> listOfEnemies;
     private Inimigos i;
     private Inventario inv;
     private Personagem p;
@@ -21,6 +24,7 @@ public class Funcoes {
         i = null;
         inv = new Inventario();
         p = escolherClasse();
+        listOfEnemies = new ArrayList<>();
     }
 
 
@@ -56,15 +60,7 @@ public class Funcoes {
         }, delay);
     }
 
-   // public List<?> getPackageInimigo() {
-   //     List<?> listaPackage;
-   //     try (ScanResult scanResult = new ClassGraph().enableAllInfo().whitelistPackages("Inimigos").scan()) {
-    //        listaPackage = scanResult.getAllClasses().loadClasses();
-   //     }
-
-  //  }
-
-    // Função que adiciona os inimigos na lista
+    // Função que filtra os inimigos para uma lista
     public List<Inimigos> inimigosLista(List<?> inimigos){
         return inimigos.stream()
                 .filter(i -> i instanceof Inimigos)
@@ -114,7 +110,7 @@ public class Funcoes {
             switch (menu) {
                 case 1:
                 // inimigosLista();
-                i = Inimigos.inimigoEscolhido(Inimigos.getObjInimigo());
+                i = Inimigos.inimigoEscolhido(listOfEnemies);
                 batalha(i, p);
                 break;
                 case 2:
@@ -142,6 +138,7 @@ public class Funcoes {
 
     }
 
+    //Imprime as opções do menu
     public int menu(){
         System.out.println("--------------------------------");
         System.out.println("Main Menu");

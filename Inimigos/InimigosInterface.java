@@ -1,6 +1,9 @@
 package Inimigos;
 import Personagens.Personagem;
 
+/*
+ * Métodos obrigatórios de Inimigos
+ */
 public interface InimigosInterface {
 
     void atacar(Personagem p);
@@ -8,6 +11,4 @@ public interface InimigosInterface {
     void ataque2(Personagem p);
     void dropList();
 
-
-    
 }
