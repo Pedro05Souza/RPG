@@ -1,5 +1,6 @@
 package Funcoes;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.stream.*;
 import java.util.*;
 import Inimigos.*;
@@ -10,7 +11,7 @@ import cores.cores;
  * Classe principal de funções que rodam durante a execução do jogo
  */
 public class Funcoes {
-    public static int Rodadas;
+    public static int rodadas;
     private static Timer timer;
     private Scanner input;
     private List<Inimigos> listOfEnemies;
@@ -34,9 +35,10 @@ public class Funcoes {
         i.imprimeInimigoBatalha();
         while(p.getVida() > 0 && i.getVida() > 0){
             try {
-                Rodadas++;
                 p.getAtaque(p, i);
                 i.getAtaque(i, p);
+                hpIP(i, p);
+                rodadas++;
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
@@ -44,7 +46,31 @@ public class Funcoes {
         limpaConsole();
         i.death(p);
         p.death();
-        Rodadas = 0;
+        rodadas = 0;
+    }
+    // Função que mostra o HP do jogador e do inimigo
+    public void hpIP(Inimigos i, Personagem p){
+        trataHp(p);
+        trataHp(i);
+       
+    }
+
+    public void trataHp(Object o){
+        Method[] m = o.getClass().getMethods();
+        for (Method method : m) {
+            if (method.getName().equals("getVida")) {
+                try {
+                    int vida = (int) method.invoke(o);
+                    if (vida > 0 && vida < 40) {
+                        cores.setRed("Health: " + Integer.toString(vida));
+                    } else {
+                        cores.setGreen("Health: " + Integer.toString(vida));
+                    }
+                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     // Função que limpa o console a cada 4 segundos
@@ -59,7 +85,6 @@ public class Funcoes {
             
         }, delay);
     }
-
     // Função que filtra os inimigos para uma lista
     public List<Inimigos> inimigosLista(List<?> inimigos){
         return inimigos.stream()

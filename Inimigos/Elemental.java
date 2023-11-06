@@ -2,6 +2,7 @@ package Inimigos;
 import Personagens.Personagem;
 public class Elemental extends Inimigos implements InimigosInterface {
 
+
     public Elemental(Personagem p){
         super(p.getLevel());
         nome = "Shadow Elemental";
@@ -11,6 +12,8 @@ public class Elemental extends Inimigos implements InimigosInterface {
         xp = 100;
         nivel = 2;
     }
+
+
 
 
     //Escolhe aleatoriamente um ataque do inimigo

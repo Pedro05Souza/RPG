@@ -82,6 +82,9 @@ public class Inventario {
     }
 
     //Método de equipar o item
+
+
+
     public void equiparItem(Item i){
        if(i.equipado == true){
         System.out.println("Item already equipped.");
@@ -95,7 +98,7 @@ public class Inventario {
        } else {
         System.out.println("Item can't be equipped. Invalid class");
        }
-    }
+
 
     //Método que mostra o menu do inventário
     public void menuInventario(){
@@ -114,8 +117,9 @@ public class Inventario {
                 int posicao = input.nextInt();
                 Item i = getItem(posicao);
                 System.out.println("[1]. Equip item");
-                System.out.println("[2]. Drop item");
-                System.out.println("[3]. Exit");
+                System.out.println("[2]. Consume Item");
+                System.out.println("[3]. Drop item");
+                System.out.println("[4]. Exit");
                 int opcao2 = input.nextInt();
                 switch (opcao2) {
                     case 1:
@@ -125,6 +129,8 @@ public class Inventario {
                     removerItem(posicao);
                     break;
                     case 3:
+                    break;
+                    case 4:
                     System.out.println("Exiting...");
                     running = false;
                     break;
