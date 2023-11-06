@@ -1,19 +1,18 @@
 package Inimigos;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-
+import java.util.*;
 import Inventario.Item;
 import Inventario.Inventario;
 import Personagens.*;
 import cores.cores;
 
+/*
+ * Superclasse de todos os tipos de Inimigos a serem criados
+ */
     public abstract class Inimigos {
         protected int vida, dano, armadura, xp, nivel, pontos;
         protected ArrayList<Item> drops = new ArrayList<>(3); 
-        protected static ArrayList<Inimigos> ObjInimigo = new ArrayList<>();
         protected String nome;
         protected Random random = new Random();
         protected int ai;
@@ -136,7 +135,7 @@ import cores.cores;
 
 
         // Método que retorna um inimigo aleatório do array de inimigos
-        public static Inimigos inimigoEscolhido(ArrayList<Inimigos> subObj){
+        public static Inimigos inimigoEscolhido(List<Inimigos> subObj){
             if(subObj.size() == 0){
                 System.out.println("There are no enemies");
                 return null;
@@ -155,21 +154,7 @@ import cores.cores;
             cores.setYellow("Level: " + getNivel());
         }
 
-        // Método que adiciona um inimigo ao array de inimigos
-        public static void AdicionarInimigo(Inimigos i){
-            ObjInimigo.add(i);
-        }
-
-
-
-        // Setters and Getters
-        public static ArrayList<Inimigos> getObjInimigo() {
-            return ObjInimigo;
-        }
-
-        public int tamanhoArray(){
-            return ObjInimigo.size();
-        }
+        //Getters e Setters
 
         public String getNome() {
             return nome;

@@ -1,7 +1,9 @@
 package Personagens;
-
 import Inimigos.Inimigos;
 
+/*
+ * Classe da personagem guerreiro
+ */
 public class Guerreiro extends Personagem implements PersonagemInterface {
     private int critDmg, sorteAtual;
     
@@ -19,6 +21,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
     }
     
 
+    //Método que seleciona o tipo de ataque
     @Override
     public void atacar(Inimigos i){
         PersonagemInterface.super.atacar(i);
@@ -33,6 +36,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         }
     }
 
+    //Executa o primeiro tipo de ataque
     @Override
     public void ataque1(Inimigos i){
         int danoCrit = getDanoCrit();
@@ -45,6 +49,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         System.out.println("Your character deals " + dano +  " damage to " + i.getNome());
     }
 
+    //Executa o segundo tipo de ataque
     @Override
     public void ataque2(Inimigos i) {
         int danoMultiplicado =  getDano() * 2;

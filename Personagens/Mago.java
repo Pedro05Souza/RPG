@@ -1,9 +1,11 @@
 package Personagens;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import Inimigos.Inimigos;
 
+/*
+ * Classe da personagem Mago
+ */
 
 public class Mago extends Personagem implements PersonagemInterface {
     private int mana, manaTotal, wisdom;
@@ -22,7 +24,7 @@ public class Mago extends Personagem implements PersonagemInterface {
         setAtaque2N("Fire Damage Spell");
     }
 
-  
+    //Seleciona o tipo de ataque
     @Override
     public void atacar(Inimigos i) {
         PersonagemInterface.super.atacar(i);
@@ -38,6 +40,7 @@ public class Mago extends Personagem implements PersonagemInterface {
         }
         
     }
+    //Executa o primeiro tipo de ataque
     @Override
     public void ataque1(Inimigos i) {
         int dano = getDano();

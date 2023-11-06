@@ -1,6 +1,10 @@
 package Inventario;
 
-public class Item extends Inventario {
+/*
+ * Superclasse de todos os tipos de itens
+ */
+
+public abstract class Item extends Inventario {
     protected String nome, descricao;
     protected tiposRaridade tiposRaridade;
     protected int dano, vida, armadura, valor;
@@ -123,12 +127,4 @@ public class Item extends Inventario {
         this.tiposRaridade = tiposRaridade;
     }
 
-    
-    
-
-
-
-    
-
-    
 }

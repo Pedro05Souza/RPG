@@ -2,17 +2,21 @@ package Inimigos;
 import Personagens.Personagem;
 public class Elemental extends Inimigos implements InimigosInterface {
 
-        public Elemental(Personagem p){
-            super(p.getLevel());
-            nome = "Shadow Elemental";
-            vida = 100;
-            dano = 40;
-            armadura = 15;
-            xp = 100;
-            nivel = 2;
-        }
+
+    public Elemental(Personagem p){
+        super(p.getLevel());
+        nome = "Shadow Elemental";
+        vida = 100;
+        dano = 40;
+        armadura = 15;
+        xp = 100;
+        nivel = 2;
+    }
 
 
+
+
+    //Escolhe aleatoriamente um ataque do inimigo
     @Override
     public void atacar(Personagem p) {
         ai = random.nextInt(2);
@@ -26,6 +30,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
         } 
     }
 
+    //Executa o primeiro tipo de ataque do inimigo
     @Override
     public void ataque1(Personagem p) {
         int menosQueMetade = (int) ( vida * 0.3 );
@@ -37,7 +42,8 @@ public class Elemental extends Inimigos implements InimigosInterface {
             ataque2(p);
         }
     }
-    
+
+    //Executa o segunto tipo de ataque do inimigo
     @Override
     public void ataque2(Personagem p){
         int dmg = dano;
@@ -47,16 +53,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
         }
     }
 
-    public int getAi() {
-        return ai;
-    }
-
-
-    public void setAi(int ai) {
-        this.ai = ai;
-    }
-
-
+    //Droplist (não tem itens ainda)
     @Override
     public void dropList() {
         

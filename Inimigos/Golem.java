@@ -13,9 +13,9 @@ public class Golem extends Inimigos implements InimigosInterface {
         armadura = 35;
         xp = 100;
         nivel = 5;
-        
     }
 
+    //Escolhe aleatoriamente um ataque do inimigo
     @Override
     public void atacar(Personagem p) {
         ai = random.nextInt(2);
@@ -29,12 +29,14 @@ public class Golem extends Inimigos implements InimigosInterface {
         }
     }
 
-     @Override
+    //Executa o primeiro tipo de ataque do inimigo
+    @Override
     public void ataque1(Personagem p) {
         int dano = getDano();
         System.out.println("Golem attacks you with its fists. Dealing " + p.danoTomadoP(dano) + " damage.");
     }
 
+    //Executa o segundo tipo de ataque do inimigo
     @Override
     public void ataque2(Personagem p){
         if(rodando){
@@ -61,7 +63,8 @@ public class Golem extends Inimigos implements InimigosInterface {
     }
      
     
-
+    
+    //Droplist (não tem itens)
     @Override
     public void dropList() {
     }

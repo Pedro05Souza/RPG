@@ -1,6 +1,8 @@
 package Inventario.Equipamentos;
 import Inventario.Item;
-
+/*
+ * Item WarriorSword
+ */
 public class WarriorSword extends Item {
 
     public WarriorSword(){

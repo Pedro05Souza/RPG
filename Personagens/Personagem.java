@@ -1,20 +1,19 @@
 package Personagens;
 import java.util.Scanner;
 import java.util.Timer;
-
 import Funcoes.*;
 import Inimigos.Inimigos;
 import cores.cores;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import java.util.Random;
 
+/*
+ * Superclasse de todos os Personagens a serem criados
+ */
 public abstract class Personagem {
     protected int vida, xp, dano, armadura, level, pts;
     protected static String ataque1, ataque2;

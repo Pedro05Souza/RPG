@@ -3,6 +3,9 @@ import Personagens.Personagem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Classe de inventário do personagem
+ */
 public class Inventario {
     private static final int MAXITENS = 5;
     private Personagem p;
@@ -77,7 +80,11 @@ public class Inventario {
         return i;
 
     }
-    // metodo que equipa o item
+
+    //Método de equipar o item
+
+
+
     public void equiparItem(Item i){
        if(i.equipado == true){
         System.out.println("Item already equipped.");
@@ -91,8 +98,9 @@ public class Inventario {
        } else {
         System.out.println("Item can't be equipped. Invalid class");
        }
-    }
-    // metodo que mostra o menu do inventario
+
+
+    //Método que mostra o menu do inventário
     public void menuInventario(){
         if(itens.size() == 0){
             System.out.println("Inventory is empty");

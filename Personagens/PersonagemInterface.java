@@ -1,7 +1,9 @@
 package Personagens;
-import Personagens.Personagem;
 import Inimigos.Inimigos;
 
+/*
+ * Métodos para todos os personagens
+ */
 public interface PersonagemInterface {
 
     default void atacar(Inimigos i){

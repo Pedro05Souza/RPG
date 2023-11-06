@@ -1,8 +1,9 @@
 package Inventario.Equipamentos;
-
 import Personagens.Mago;
 import Inventario.Item;
-
+/*
+ * Item Ethereal Ring
+ */
 public class EtherealRing extends Item {
     private static final Mago Personagem = null;
     private int mana;
@@ -17,7 +18,4 @@ public class EtherealRing extends Item {
         vida = 15;
         mana = (int) (.3 * ((Mago) Personagem).getManaTotal());
     }
-
-
-    
 }
