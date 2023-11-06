@@ -98,6 +98,7 @@ public class Inventario {
        } else {
         System.out.println("Item can't be equipped. Invalid class");
        }
+    }
 
 
     //Método que mostra o menu do inventário
@@ -106,50 +107,48 @@ public class Inventario {
             System.out.println("Inventory is empty");
         } else {
         boolean running = true;
-        while (running) {
-        mostrarItens();
-        System.out.println("[1]. Click here to select an item from your inventory");
-        System.out.println("[2]. Exit");
-        int opcao = input.nextInt();
-        switch (opcao) {
-            case 1:
-                System.out.println("Insert the item's position:");
-                int posicao = input.nextInt();
-                Item i = getItem(posicao);
-                System.out.println("[1]. Equip item");
-                System.out.println("[2]. Consume Item");
-                System.out.println("[3]. Drop item");
-                System.out.println("[4]. Exit");
-                int opcao2 = input.nextInt();
-                switch (opcao2) {
+            while (running) {
+                mostrarItens();
+                System.out.println("[1]. Click here to select an item from your inventory");
+                System.out.println("[2]. Exit");
+                int opcao = input.nextInt();
+                switch (opcao) {
                     case 1:
-                    equiparItem(i);
-                    break;
-                    case 2:
-                    removerItem(posicao);
-                    break;
-                    case 3:
-                    break;
-                    case 4:
-                    System.out.println("Exiting...");
-                    running = false;
-                    break;
+                        System.out.println("Insert the item's position:");
+                        int posicao = input.nextInt();
+                        Item i = getItem(posicao);
+                        System.out.println("[1]. Equip item");
+                        System.out.println("[2]. Consume Item");
+                        System.out.println("[3]. Drop item");
+                        System.out.println("[4]. Exit");
+                        int opcao2 = input.nextInt();
+                        switch (opcao2) {
+                            case 1:
+                            equiparItem(i);
+                            break;
+                            case 2:
+                            removerItem(posicao);
+                            break;
+                            case 3:
+                            break;
+                            case 4:
+                            System.out.println("Exiting...");
+                            running = false;
+                            break;
+                            default:
+                            System.out.println("Invalid option;");
+                                break;
+                        }
+                        break;
+                        case 2:
+                        System.out.println("Exiting...");
+                        running = false;
+                        break;
                     default:
-                    System.out.println("Invalid option;");
+                    System.out.println("Invalid option");
                         break;
                 }
-                break;
-                case 2:
-                System.out.println("Exiting...");
-                running = false;
-                break;
-        
-            default:
-            System.out.println("Invalid option");
-                break;
+            }
         }
-       
     }
-}
-}
 }
