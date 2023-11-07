@@ -1,5 +1,7 @@
 package Inventario;
 import Personagens.Personagem;
+import cores.cores;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,6 +34,7 @@ public class Inventario {
         for (Item item : itens) {
             if (itens.indexOf(item) == posicao) {
                 itens.remove(item);
+                posAtual = itens.size();
                 break;
             }
         }
@@ -67,7 +70,7 @@ public class Inventario {
     public Item getItem(int posicao){
         Item i = null;
         if(posicao > 5 || posicao < 0){
-            System.out.println("Invalid Position");
+            cores.setRed("Invalid Position");
             return null;
         } else {
             for (Item item : itens) {
@@ -87,16 +90,16 @@ public class Inventario {
 
     public void equiparItem(Item i){
        if(i.equipado == true){
-        System.out.println("Item already equipped.");
+        cores.setRed("Item already equipped.");
        } 
        if(p.getClasseC() == i.getItemClasse()){
         i.equipado = true;
         p.setDano(p.getDano() + i.getDano());
         p.setArmadura(p.getArmadura() + i.getArmadura());
         p.setVida(p.getVida() + i.getVida());
-        System.out.println("Item equipped.");
+        cores.setGreen("Item equipped.");
        } else {
-        System.out.println("Item can't be equipped. Invalid class");
+        cores.setRed("This item is not for your class.");
        }
     }
 
@@ -104,7 +107,7 @@ public class Inventario {
     //Método que mostra o menu do inventário
     public void menuInventario(){
         if(itens.size() == 0){
-            System.out.println("Inventory is empty");
+            cores.setRed("Your inventory is empty.");
         } else {
         boolean running = true;
             while (running) {

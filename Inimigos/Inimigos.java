@@ -125,7 +125,7 @@ import cores.cores;
 
         public void hpInimigo(){
             int vida = getVida();
-            int vidaPorcentagem = (int) (vida * 0.3);
+            int vidaPorcentagem = (int) (vida * 0.4);
             if(vida < vidaPorcentagem){
                 cores.setRed(getNome() +" Health: " + getVida() + "/" + getVidaMax());
             } else {
@@ -136,8 +136,8 @@ import cores.cores;
         // Função que verifica se o inimigo morreu
         public void death(Personagem p){
             if(getVida() < 0){
-                System.out.println("You have defeated " + getNome() + "!");
-                System.out.println("You have gained " + getXp() + " XP!");
+                cores.setGreen("You have defeated " + getNome() + "!");
+                cores.setGreen("You have gained " + getXp() + " XP!");
                 dropItem();
                 p.setXp(p.getXp() + getXp());
                 
@@ -148,7 +148,7 @@ import cores.cores;
         // Método que retorna um inimigo aleatório do array de inimigos
         public static Inimigos inimigoEscolhido(List<Inimigos> subObj){
             if(subObj.size() == 0){
-                System.out.println("There are no enemies");
+                cores.setRed("No enemies found.");
                 return null;
             } else {
             int rng = r.nextInt(subObj.size());
