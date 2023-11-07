@@ -15,7 +15,7 @@ import java.util.Random;
  * Superclasse de todos os Personagens a serem criados
  */
 public abstract class Personagem {
-    protected int vida, xp, dano, armadura, level, pts;
+    protected int vida, vidaMax, xp, dano, armadura, level, pts;
     protected static String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
@@ -83,8 +83,6 @@ public abstract class Personagem {
        }
     }
     
-    
-
     // Pega o método na interface de ataque.
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method[] declaredMethods = a.getClass().getDeclaredMethods();
@@ -131,7 +129,7 @@ public abstract class Personagem {
     // seta os novos atributos do jogador com base nos pontos
     public void setAtributos(Personagem p) throws IllegalArgumentException, IllegalAccessException{
         if(getPts() > 0){
-            int vidaAtual = p.getVida();
+            int vidaAtual = p.getVidaMax();
             int danoAtual = p.getDano();
             int defesaAtual = p.getArmadura();
             int vidaFinal = 0, danoFinal = 0, defesaFinal = 0;
@@ -179,7 +177,7 @@ public abstract class Personagem {
                     cores.setRed("Invalid option.");
                     break;
                 }
-                p.setVida(danoAtual + vidaFinal);
+                p.setVidaMax(danoAtual + vidaFinal);
                 p.setDano(danoAtual + danoFinal);
                 p.setArmadura(defesaAtual + defesaFinal);
                 p.setPts(PontosAtributos - ptsDistri);
@@ -201,6 +199,16 @@ public abstract class Personagem {
         System.out.println("[1]. " + getAtaque1N());
         System.out.println("[2]. " + getAtaque2N());
         System.out.println("--------------------------------");
+    }
+
+    public void hpJogador(){
+        int vida = getVida();
+        int vidaPorcentagem = (int) (vidaMax * 0.3);
+        if(vida < vidaPorcentagem){
+            cores.setRed("Your Health: " + getVida() + "/" + getVidaMax());
+        } else {
+            cores.setGreen("Your Health: " + getVida() + "/" + getVidaMax());
+        }
     }
 
 
@@ -290,6 +298,15 @@ public abstract class Personagem {
     public void setClasseC(char classeC) {
         this.classeC = classeC;
     }
+
+    public int getVidaMax() {
+        return vidaMax;
+    }
+
+    public void setVidaMax(int vidaMax) {
+        this.vidaMax = vidaMax;
+    }
+    
     
 
 }

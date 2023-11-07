@@ -1,20 +1,16 @@
 package Funcoes;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.stream.*;
 import java.util.*;
 import Inimigos.*;
 import Inventario.Inventario;
 import Personagens.*;
 import cores.cores;
-/*
- * Classe principal de funções que rodam durante a execução do jogo
- */
+
 public class Funcoes {
     public static int rodadas;
     private static Timer timer;
+    private ArrayList<Inimigos> inimigos;
     private Scanner input;
-    private List<Inimigos> listOfEnemies;
     private Inimigos i;
     private Inventario inv;
     private Personagem p;
@@ -25,7 +21,7 @@ public class Funcoes {
         i = null;
         inv = new Inventario();
         p = escolherClasse();
-        listOfEnemies = new ArrayList<>();
+        inimigos = new ArrayList<>();
     }
 
 
@@ -35,6 +31,7 @@ public class Funcoes {
         i.imprimeInimigoBatalha();
         while(p.getVida() > 0 && i.getVida() > 0){
             try {
+                System.out.println("Round: " + rodadas);
                 p.getAtaque(p, i);
                 i.getAtaque(i, p);
                 hpIP(i, p);
@@ -50,28 +47,12 @@ public class Funcoes {
     }
     // Função que mostra o HP do jogador e do inimigo
     public void hpIP(Inimigos i, Personagem p){
-        trataHp(p);
-        trataHp(i);
+        p.hpJogador();
+        i.hpInimigo();
        
     }
 
-    public void trataHp(Object o){
-        Method[] m = o.getClass().getMethods();
-        for (Method method : m) {
-            if (method.getName().equals("getVida")) {
-                try {
-                    int vida = (int) method.invoke(o);
-                    if (vida > 0 && vida < 40) {
-                        cores.setRed("Health: " + Integer.toString(vida));
-                    } else {
-                        cores.setGreen("Health: " + Integer.toString(vida));
-                    }
-                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+   
 
     // Função que limpa o console a cada 4 segundos
     public static void limpaConsole(){
@@ -85,12 +66,15 @@ public class Funcoes {
             
         }, delay);
     }
-    // Função que filtra os inimigos para uma lista
-    public List<Inimigos> inimigosLista(List<?> inimigos){
-        return inimigos.stream()
-                .filter(i -> i instanceof Inimigos)
-                .map(i -> (Inimigos) i)
-                .collect(Collectors.toList());
+
+    // Função que adiciona os inimigos na lista
+
+    public void inimigosLista(){
+        Golem golem = new Golem(p);
+        Elemental elemental = new Elemental(p);
+        inimigos.add(golem);
+        inimigos.add(elemental);
+        
     }
 
     // Função que escolhe a classe do jogador
@@ -127,6 +111,7 @@ public class Funcoes {
         p.getClasse(p);
         return p;
     }
+    
     // Função que mostra o menu principal    
     public void menuPrincipal() throws NoSuchMethodException, IllegalAccessException{
         boolean running = true;
@@ -134,8 +119,8 @@ public class Funcoes {
             int menu = menu();
             switch (menu) {
                 case 1:
-                // inimigosLista();
-                i = Inimigos.inimigoEscolhido(listOfEnemies);
+                inimigosLista();
+                i = Inimigos.inimigoEscolhido(inimigos);
                 batalha(i, p);
                 break;
                 case 2:
@@ -163,7 +148,6 @@ public class Funcoes {
 
     }
 
-    //Imprime as opções do menu
     public int menu(){
         System.out.println("--------------------------------");
         System.out.println("Main Menu");

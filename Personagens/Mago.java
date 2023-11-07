@@ -12,7 +12,8 @@ public class Mago extends Personagem implements PersonagemInterface {
 
     public Mago(){
         classeC = 'M';
-        vida = 70;
+        vidaMax = 70;
+        vida = vidaMax;
         dano = 50;
         manaTotal = 100;
         mana = manaTotal;

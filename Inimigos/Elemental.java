@@ -6,7 +6,8 @@ public class Elemental extends Inimigos implements InimigosInterface {
     public Elemental(Personagem p){
         super(p.getLevel());
         nome = "Shadow Elemental";
-        vida = 100;
+        vidaMax = 100;
+        vida = vidaMax;
         dano = 40;
         armadura = 15;
         xp = 100;

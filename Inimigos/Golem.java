@@ -3,14 +3,15 @@ import Funcoes.Funcoes;
 import Personagens.Personagem;
 
 public class Golem extends Inimigos implements InimigosInterface {
-    private boolean ativo, rodando = false;
+    private boolean rodando = false;
 
     public Golem(Personagem p){
         super(p.getLevel());
         nome = "Golem";
-        vida = 100;
-        dano = 15;
-        armadura = 35;
+        vidaMax = 150;
+        vida = vidaMax;
+        dano = 1;
+        armadura = 2;
         xp = 100;
         nivel = 5;
     }
@@ -38,29 +39,8 @@ public class Golem extends Inimigos implements InimigosInterface {
 
     //Executa o segundo tipo de ataque do inimigo
     @Override
-    public void ataque2(Personagem p){
-        if(rodando){
-            ataque1(p);
-        } else {
-        rodando = true;    
-        int rodadas = Funcoes.rodadas;
-        int rodadaFinal = rodadas + 3;
-        int armadura = getArmadura();
-        int armaduraMultiplicada = getArmadura() * 2;
-        if(rodadas < rodadaFinal && ativo ==  false){
-            System.out.println("Golem uses its ability: Stone Skin. It increases its armor by " + armaduraMultiplicada + " for 3 turns.");
-            setArmadura(armaduraMultiplicada);
-            ativo = true;
-        } else if(rodadas < rodadaFinal && ativo == true){
-            System.out.println("Golem's Stone Skin is still active.");
-        } else {
-            System.out.println("Golem's Stone Skin has ended.");
-            rodando = false;
-            ativo = false;
-            setArmadura(armadura);
+    public void ataque2(Personagem p) {
         }
-    }
-    }
      
     
     
