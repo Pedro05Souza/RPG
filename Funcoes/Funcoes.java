@@ -1,6 +1,5 @@
 package Funcoes;
 import java.lang.reflect.InvocationTargetException;
-import java.util.stream.*;
 import java.util.*;
 import Inimigos.*;
 import Inventario.Inventario;
@@ -10,6 +9,7 @@ import cores.cores;
 public class Funcoes {
     public static int rodadas;
     private static Timer timer;
+    private ArrayList<Inimigos> inimigos;
     private Scanner input;
     private Inimigos i;
     private Inventario inv;
@@ -21,6 +21,7 @@ public class Funcoes {
         i = null;
         inv = new Inventario();
         p = escolherClasse();
+        inimigos = new ArrayList<>();
     }
 
 
@@ -67,11 +68,13 @@ public class Funcoes {
     }
 
     // Função que adiciona os inimigos na lista
-    public List<Inimigos> inimigosLista(List<?> inimigos){
-        return inimigos.stream()
-                .filter(i -> i instanceof Inimigos)
-                .map(i -> (Inimigos) i)
-                .collect(Collectors.toList());
+
+    public void inimigosLista(){
+        Golem golem = new Golem(p);
+        Elemental elemental = new Elemental(p);
+        inimigos.add(golem);
+        inimigos.add(elemental);
+        
     }
 
     // Função que escolhe a classe do jogador
@@ -108,6 +111,7 @@ public class Funcoes {
         p.getClasse(p);
         return p;
     }
+    
     // Função que mostra o menu principal    
     public void menuPrincipal() throws NoSuchMethodException, IllegalAccessException{
         boolean running = true;
@@ -115,8 +119,8 @@ public class Funcoes {
             int menu = menu();
             switch (menu) {
                 case 1:
-                Golem g = new Golem(p);
-                i = g;
+                inimigosLista();
+                i = Inimigos.inimigoEscolhido(inimigos);
                 batalha(i, p);
                 break;
                 case 2:

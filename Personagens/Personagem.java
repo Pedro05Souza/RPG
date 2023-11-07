@@ -83,8 +83,6 @@ public abstract class Personagem {
        }
     }
     
-    
-
     // Pega o método na interface de ataque.
     public void getAtaque(Object a, Inimigos i) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method[] declaredMethods = a.getClass().getDeclaredMethods();
@@ -131,7 +129,7 @@ public abstract class Personagem {
     // seta os novos atributos do jogador com base nos pontos
     public void setAtributos(Personagem p) throws IllegalArgumentException, IllegalAccessException{
         if(getPts() > 0){
-            int vidaAtual = p.getVida();
+            int vidaAtual = p.getVidaMax();
             int danoAtual = p.getDano();
             int defesaAtual = p.getArmadura();
             int vidaFinal = 0, danoFinal = 0, defesaFinal = 0;
@@ -179,7 +177,7 @@ public abstract class Personagem {
                     cores.setRed("Invalid option.");
                     break;
                 }
-                p.setVida(danoAtual + vidaFinal);
+                p.setVidaMax(danoAtual + vidaFinal);
                 p.setDano(danoAtual + danoFinal);
                 p.setArmadura(defesaAtual + defesaFinal);
                 p.setPts(PontosAtributos - ptsDistri);
@@ -209,7 +207,7 @@ public abstract class Personagem {
         if(vida < vidaPorcentagem){
             cores.setRed("Your Health: " + getVida() + "/" + getVidaMax());
         } else {
-            cores.setGreen("Your Health: " + getVida());
+            cores.setGreen("Your Health: " + getVida() + "/" + getVidaMax());
         }
     }
 

@@ -11,7 +11,7 @@ import cores.cores;
  * Superclasse de todos os tipos de Inimigos a serem criados
  */
     public abstract class Inimigos {
-        protected int vida, dano, armadura, xp, nivel, pontos;
+        protected int vida, vidaMax, dano, armadura, xp, nivel, pontos, contadorAtaque;
         protected ArrayList<Item> drops = new ArrayList<>(3); 
         protected String nome;
         protected Random random = new Random();
@@ -68,7 +68,7 @@ import cores.cores;
         // Seta os atributos do inimigo com um número aleatório
         public void setAtributosInimigo(){
             int pontos = getPontos();
-            int vidaAtual = getVida();
+            int vidaAtual = getVidaMax();
             int danoAtual = getDano();
             int defesaAtual = getArmadura();
             System.out.println(vidaAtual);
@@ -93,7 +93,8 @@ import cores.cores;
                     break;
                 }
             }
-            setVida(vidaAtual + vidaFinal);
+            setVidaMax(vidaAtual + vidaFinal);
+            setVida(getVidaMax());
             setDano(danoAtual + danoFinal);
             setArmadura(defesaAtual + defesaFinal);
         }
@@ -126,9 +127,9 @@ import cores.cores;
             int vida = getVida();
             int vidaPorcentagem = (int) (vida * 0.3);
             if(vida < vidaPorcentagem){
-                cores.setRed(getNome() +" Health: " + getVida());
+                cores.setRed(getNome() +" Health: " + getVida() + "/" + getVidaMax());
             } else {
-                cores.setGreen( getNome() + " Health: " + getVida());
+                cores.setGreen( getNome() + " Health: " + getVida() + "/" + getVidaMax());
             }
         }
 
@@ -223,5 +224,14 @@ import cores.cores;
         public void setAi(int ai) {
             this.ai = ai;
         }
+
+        public int getVidaMax() {
+            return vidaMax;
+        }
+
+        public void setVidaMax(int vidaMax) {
+            this.vidaMax = vidaMax;
+        }
+        
         
     }
