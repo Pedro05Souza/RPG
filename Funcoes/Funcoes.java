@@ -150,7 +150,7 @@ public class Funcoes {
 
     public int menu(){
         System.out.println("--------------------------------");
-        System.out.println("Main Menu");
+        cores.setYellow("Main Menu");
         System.out.println("[1]. Battle Enemies");
         System.out.println("[2]. Inventory");
         System.out.println("[3]. Character");

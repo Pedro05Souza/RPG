@@ -203,7 +203,7 @@ public abstract class Personagem {
 
     public void hpJogador(){
         int vida = getVida();
-        int vidaPorcentagem = (int) (vidaMax * 0.3);
+        int vidaPorcentagem = (int) (vidaMax * 0.4);
         if(vida < vidaPorcentagem){
             cores.setRed("Your Health: " + getVida() + "/" + getVidaMax());
         } else {
