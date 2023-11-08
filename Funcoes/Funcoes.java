@@ -39,7 +39,7 @@ public class Funcoes {
         input = new Scanner(System.in);
         i = null;
         inv = new Inventario();
-        p = null; // falta resolver um bglh
+        p = null;
         inimigos = new ArrayList<>();
         save = new File("save.txt");
     }
@@ -55,7 +55,6 @@ public class Funcoes {
         writer.write("HP: " + p.getVida() + "\n");
         writer.write("Armor: " + p.getArmadura() + "\n");
         writer.write("Damage: " + p.getDano() + "\n");
-        encrypt();
         writer.close();
         } catch (IOException e) {
             cores.setRed("An error occurred while saving.");
@@ -76,6 +75,7 @@ public class Funcoes {
                 }
                 linhacripto = criptografia.append(chars).append("\n").toString();
                 writer.write(linhacripto);
+                writer.close();
             }
         } catch (IOException e) {
             cores.setRed("An error occurred while encrypting.");
@@ -133,7 +133,7 @@ public class Funcoes {
             }
             }
             temvalor = true;
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             cores.setRed("No save file was found.");
         }
         return temvalor;
@@ -162,6 +162,15 @@ public class Funcoes {
             p = escolherClasse();
         }
 
+    }
+
+    public void deleteSave(){
+        if(save.exists() ==  false){
+            cores.setRed("No save file was found.");
+        } else {
+            save.delete();
+            cores.setGreen("Save file deleted.");
+        }
     }
 
     // Função que faz as lutas entre os Personagens e Inimigos
@@ -277,7 +286,11 @@ public class Funcoes {
                 running = false;
                 System.exit(0);
                 break;
+                case 7:
+                deleteSave();
+                break;
                 default:
+                cores.setRed("Invalid option.");
                 break;
             }
         }
@@ -288,12 +301,13 @@ public class Funcoes {
     public int menu(){
         System.out.println("--------------------------------");
         cores.setYellow("Main Menu");
-        System.out.println("[1]. Battle Enemies");
-        System.out.println("[2]. Inventory");
-        System.out.println("[3]. Character");
-        System.out.println("[4]. Skill Tree");
-        System.out.println("[5]. Shop");
-        System.out.println("[6]. Save and leave");
+        System.out.println("[1]. Battle Enemies;");
+        System.out.println("[2]. Inventory;");
+        System.out.println("[3]. Character;");
+        System.out.println("[4]. Skill Tree;");
+        System.out.println("[5]. Shop;");
+        System.out.println("[6]. Save and leave;");
+        System.out.println("[7]. Delete Save;");
         System.out.println("--------------------------------");
         return input.nextInt();
     }
