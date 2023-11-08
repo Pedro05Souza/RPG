@@ -127,10 +127,12 @@ import cores.cores;
             }
             
         }
-
+        
+        // Função que verifica se o inimigo está com menos de 40% de vida
         public void hpInimigo(){
             int vida = getVida();
-            int vidaPorcentagem = (int) (vida * 0.4);
+            int vidaPorcentagem = (int) (vidaMax * 0.4);
+            System.out.println(vidaPorcentagem);
             if(vida < vidaPorcentagem){
                 cores.setRed(getNome() +" Health: " + getVida() + "/" + getVidaMax());
             } else {
