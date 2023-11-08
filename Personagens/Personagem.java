@@ -19,22 +19,29 @@ public abstract class Personagem {
     protected static String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
-    protected char classeC;
+    protected char classeCaractere;
    // em caso de alguma classe precise de algum ataque com tempo
     protected Timer timer = new Timer();  
-    private String [] classes = new String[1];
-    private static final Map<Character, String> classMap = new HashMap<>();
+    private String [] valoresClasses = new String[1];
+    private static final Map<Character, String> atributoClasse = new HashMap<>();
+    private static final Map<Character, String> classMap2 = new HashMap<>();
 
-    // Define os valores do Map
+    // Define os valores dos atributos das classes
     static {
-        classMap.put('M', "Mana");
-        classMap.put('G', "CritDmg");
-        classMap.put('K', "CoolDown");
-        classMap.put('A', "Arrows");
+        atributoClasse.put('M', "Mana");
+        atributoClasse.put('G', "CritDmg");
+        atributoClasse.put('K', "CoolDown");
+        atributoClasse.put('A', "Arrows");
     }
 
-                                                   
-
+    // Define os nomes das classes
+    static {
+        classMap2.put('M', "Mage");
+        classMap2.put('G', "Warrrior");
+        classMap2.put('K', "Knight");
+        classMap2.put('A', "Archer");
+    }
+                                      
     // Status do jogador
     public void status() throws IllegalArgumentException, IllegalAccessException {
         System.out.println("HP " + getVida());
@@ -43,17 +50,27 @@ public abstract class Personagem {
         System.out.println("Level: " + getLevel());
         System.out.println("XP: " + getXp());
         System.out.println("Attribute points: " + getPts());
-        System.out.println(getClasse(classes) + ": " + getCalculoClasse(this, classes));
+        System.out.println(getClasse(valoresClasses) + ": " + getCalculoClasse(this, valoresClasses));
     }
 
     // Pega a classe do jogador
     public String [] getClasse(Personagem p){
-        if(classMap.containsKey(p.classeC)){
-            classes[0] = classMap.get(p.classeC);
-            return classes;
+        if(atributoClasse.containsKey(p.classeCaractere)){
+            valoresClasses[0] = atributoClasse.get(p.classeCaractere);
+            return valoresClasses;
         }
         return null;
         }
+
+    // Imprime a classe do jogador
+    public String imprimeClasse(){
+        String classe = "N/A";
+        if(classMap2.containsKey(this.classeCaractere)){
+            classe = classMap2.get(this.classeCaractere);
+            return classe;
+        }
+        return classe;
+    }
 
 
     // Upar de nível
@@ -141,7 +158,7 @@ public abstract class Personagem {
                 System.out.println("[1]. Health;");
                 System.out.println("[2]. Damage;");
                 System.out.println("[3]. Defense;");
-                System.out.println("[4]. " + getClasse(classes));
+                System.out.println("[4]. " + getClasse(valoresClasses));
                 System.out.println("[5]. Leave;");
                 int menu = input.nextInt();
                 if(menu == 5){
@@ -167,7 +184,7 @@ public abstract class Personagem {
                         defesaFinal += defesaAumentada;
                     break;
                     case 4:
-                    calculoClasse(p, classes);
+                    calculoClasse(p, valoresClasses);
                     break;
                     case 5:
                     cores.setGreen("Returning to the main menu.");
@@ -291,12 +308,12 @@ public abstract class Personagem {
         Personagem.ataque2 = ataque2;
     }
 
-    public char getClasseC() {
-        return classeC;
+    public char getClasseCaractere() {
+        return classeCaractere;
     }
 
-    public void setClasseC(char classeC) {
-        this.classeC = classeC;
+    public void setClasseCaractere(char classeC) {
+        this.classeCaractere = classeC;
     }
 
     public int getVidaMax() {

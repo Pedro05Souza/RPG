@@ -1,5 +1,12 @@
 package Funcoes;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.Buffer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import Inimigos.*;
 import Inventario.Inventario;
@@ -10,6 +17,7 @@ public class Funcoes {
     public static int rodadas;
     private static Timer timer;
     private ArrayList<Inimigos> inimigos;
+    private File save;
     private Scanner input;
     private Inimigos i;
     private Inventario inv;
@@ -20,10 +28,94 @@ public class Funcoes {
         input = new Scanner(System.in);
         i = null;
         inv = new Inventario();
-        p = escolherClasse();
+        p = escolherClasse(); // falta resolver um bglh
         inimigos = new ArrayList<>();
+        save = new File("save.txt");
     }
 
+    // Função que salva os stats do jogador
+    public void saveStats(){
+        try (
+        BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) 
+        {
+        writer.write("Classe: " + p.imprimeClasse() + "\n");
+        writer.write("Level: " + p.getLevel() + "\n");
+        writer.write("XP: " + p.getXp() + "\n");
+        writer.write("HP: " + p.getVida() + "\n");
+        writer.write("Armor " + p.getArmadura() + "\n");
+        writer.write("Damage: " + p.getDano() + "\n");
+        writer.close();
+        } catch (IOException e) {
+            cores.setRed("An error occurred while saving.");
+        }
+        }
+
+    // Função que carrega os stats do jogador
+    public boolean loadStats() {
+        boolean temvalor = false;
+        try (
+            BufferedReader reader = new BufferedReader((new FileReader(save)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String [] stats = line.split(": ");
+                if(stats.length > 1){
+                    String stat = stats[0];
+                    String value = stats[1];
+                switch (stat) {
+                    case "Level":
+                        p.setLevel(Integer.parseInt(value));
+                        break;
+                    case "XP":
+                        p.setXp(Integer.parseInt(value));
+                        break;
+                    case "HP":
+                        p.setVida(Integer.parseInt(value));
+                        break;
+                    case "Armor":
+                        p.setArmadura(Integer.parseInt(value));
+                        break;
+                    case "Damage":  
+                        p.setDano(Integer.parseInt(value));
+                        break;
+                    case "Classe":
+                        // falta fazer essa merda tbm
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+            }
+            temvalor = true;
+        } catch (IOException e) {
+            cores.setRed("No save file was found.");
+        }
+        return temvalor;
+    }
+
+    public void loadSave(boolean temValor){
+        if(temValor){
+            cores.setGreen("The game detected a save file, would you like to load it?");
+            System.out.println("[1] - Yes");
+            System.out.println("[2] - No");
+            int load = input.nextInt();
+            switch (load) {
+                case 1:
+                cores.setGreen("Loading save...");
+                loadStats();
+                break;
+                case 2:
+                cores.setGreen("Starting new game...");
+                escolherClasse();
+                break;
+                default:
+                break;
+            }
+        }else {
+            p = escolherClasse();
+        }
+
+    }
 
     // Função que faz as lutas entre os Personagens e Inimigos
     public void batalha(Inimigos i, Personagem p) throws NoSuchMethodException, IllegalAccessException{
@@ -45,14 +137,12 @@ public class Funcoes {
         p.death();
         rodadas = 0;
     }
+
     // Função que mostra o HP do jogador e do inimigo
     public void hpIP(Inimigos i, Personagem p){
         p.hpJogador();
         i.hpInimigo();
-       
     }
-
-   
 
     // Função que limpa o console a cada 4 segundos
     public static void limpaConsole(){
@@ -137,6 +227,7 @@ public class Funcoes {
                 break;
                 case 6:
                 cores.setGreen("Saving and leaving.");
+                saveStats();
                 running = false;
                 System.exit(0);
                 break;
