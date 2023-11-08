@@ -9,9 +9,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import Inimigos.*;
+import Inimigos.InimigosNormais.Elemental;
+import Inimigos.InimigosNormais.Golem;
 import Inventario.Inventario;
 import Personagens.*;
+import Personagens.Classes.Arqueira;
+import Personagens.Classes.Guerreiro;
+import Personagens.Classes.Knight;
+import Personagens.Classes.Mago;
 import cores.cores;
+
+/*
+ * Classe que contém as funções do jogo
+ * STATUS: Funcional, ajustes no load e save;
+ */
 
 public class Funcoes {
     public static int rodadas;
@@ -38,7 +49,7 @@ public class Funcoes {
         try (
         BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) 
         {
-        writer.write("Classe: " + p.imprimeClasse() + "\n");
+        writer.write("Class: " + p.imprimeClasse() + "\n");
         writer.write("Level: " + p.getLevel() + "\n");
         writer.write("XP: " + p.getXp() + "\n");
         writer.write("HP: " + p.getVida() + "\n");
@@ -77,7 +88,7 @@ public class Funcoes {
                     case "Damage":  
                         p.setDano(Integer.parseInt(value));
                         break;
-                    case "Classe":
+                    case "Class":
                         // falta fazer essa merda tbm
                         break;
                 
@@ -170,7 +181,7 @@ public class Funcoes {
     // Função que escolhe a classe do jogador
     public Personagem escolherClasse(){
         Personagem p = null;
-        System.out.println("Your journey is about to begin, pick your class: ");
+        cores.setGreen("Your journey begins here, choose your class.");
         System.out.println("[1] - Knight");
         System.out.println("[2] - Mage");
         System.out.println("[3] - Warrior");

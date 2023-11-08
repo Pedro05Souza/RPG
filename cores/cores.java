@@ -1,6 +1,7 @@
 package cores;
 /*
  * Classe para definição de cores no texto do RPG
+ * STATUS: Funcional;
  */
 public class cores {
     public static String black = "\u001B[30m";

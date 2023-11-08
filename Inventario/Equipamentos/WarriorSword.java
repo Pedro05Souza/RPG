@@ -1,7 +1,10 @@
 package Inventario.Equipamentos;
+
 import Inventario.Item;
+
 /*
  * Item WarriorSword
+ * STATUS: Falta Implementar
  */
 public class WarriorSword extends Item {
 

@@ -2,6 +2,7 @@ package Inventario;
 
 /*
  * Superclasse de todos os tipos de itens
+ * STATUS: Falta testar todos os métodos;
  */
 
 public abstract class Item extends Inventario {

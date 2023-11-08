@@ -1,4 +1,6 @@
-package Inimigos;
+package Inimigos.InimigosNormais;
+import Inimigos.Inimigos;
+import Inimigos.InimigosInterface;
 import Personagens.Personagem;
 public class Elemental extends Inimigos implements InimigosInterface {
 

@@ -1,5 +1,7 @@
-package Personagens;
+package Personagens.Classes;
 import Inimigos.Inimigos;
+import Personagens.Personagem;
+import Personagens.PersonagemInterface;
 
 /*
  * Classe da personagem guerreiro

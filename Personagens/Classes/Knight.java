@@ -1,6 +1,8 @@
-package Personagens;
+package Personagens.Classes;
 import java.util.TimerTask;
 import Inimigos.Inimigos;
+import Personagens.Personagem;
+import Personagens.PersonagemInterface;
 
 /*
  * Classe da personagem Knight

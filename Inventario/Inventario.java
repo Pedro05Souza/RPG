@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 /*
  * Classe de inventário do personagem
+ * STATUS: falta testar todos os métodos;
  */
 public class Inventario {
     private static final int MAXITENS = 5;

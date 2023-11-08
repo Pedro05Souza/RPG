@@ -13,6 +13,8 @@ import java.util.Random;
 
 /*
  * Superclasse de todos os Personagens a serem criados
+ * STATUS: Funcional;
+ * STATUS: Classes: Falta tirar os ataques com Timer;
  */
 public abstract class Personagem {
     protected int vida, vidaMax, xp, dano, armadura, level, pts;

@@ -2,13 +2,18 @@ package Inimigos;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import Inventario.Item;
+
 import Inventario.Inventario;
+import Inventario.Item;
 import Personagens.*;
 import cores.cores;
 
 /*
  * Superclasse de todos os tipos de Inimigos a serem criados
+ * STATUS: Funcional;
+ * STATUS: InimigosNormais não estão dropando itens e tirar ataques com tempo;
+ * STATUS: InimigosBosses a ser implementado;
+ * 
  */
     public abstract class Inimigos {
         protected int vida, vidaMax, dano, armadura, xp, nivel, pontos, contadorAtaque;

@@ -1,7 +1,9 @@
-package Personagens;
+package Personagens.Classes;
 import java.util.*;
 
 import Inimigos.Inimigos;
+import Personagens.Personagem;
+import Personagens.PersonagemInterface;
 
 /*
  * Classe da personagem Mago

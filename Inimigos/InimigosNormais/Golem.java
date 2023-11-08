@@ -1,5 +1,7 @@
-package Inimigos;
+package Inimigos.InimigosNormais;
 import Funcoes.Funcoes;
+import Inimigos.Inimigos;
+import Inimigos.InimigosInterface;
 import Personagens.Personagem;
 
 public class Golem extends Inimigos implements InimigosInterface {
