@@ -232,10 +232,9 @@ public abstract class Personagem {
     }
 
     // Função que o jogador morre deletando a save
-    public void death(){
+    public void death(Funcoes f){
         if(getVida() <= 0){
         cores.setRed("Your character has fallen.");
-        Funcoes f = new Funcoes();
         if(f.getSave().exists()){
             f.getSave().delete();
         }

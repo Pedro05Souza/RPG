@@ -55,9 +55,30 @@ public class Funcoes {
         writer.write("HP: " + p.getVida() + "\n");
         writer.write("Armor: " + p.getArmadura() + "\n");
         writer.write("Damage: " + p.getDano() + "\n");
+        encrypt();
         writer.close();
         } catch (IOException e) {
             cores.setRed("An error occurred while saving.");
+        }
+    }
+
+
+    public void encrypt() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(save));
+        BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) {
+            String line;
+            StringBuilder criptografia = new StringBuilder();
+            String linhacripto = "N/A";
+            while ((line = reader.readLine()) != null) {
+                char[] chars = line.toCharArray();
+                for(int i = 0; i < chars.length; i++){
+                    chars[i] += 5; 
+                }
+                linhacripto = criptografia.append(chars).append("\n").toString();
+                writer.write(linhacripto);
+            }
+        } catch (IOException e) {
+            cores.setRed("An error occurred while encrypting.");
         }
     }
 
@@ -159,7 +180,7 @@ public class Funcoes {
             }
         }
         i.death(p);
-        p.death();
+        p.death(this);
         rodadas = 0;
     }
 
