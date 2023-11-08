@@ -19,7 +19,7 @@ public abstract class Personagem {
     protected static String ataque1, ataque2;
     protected Scanner input = new Scanner(System.in);
     protected Random r = new Random();
-    protected char classeC;
+    protected char classeCaractere;
    // em caso de alguma classe precise de algum ataque com tempo
     protected Timer timer = new Timer();  
     private String [] valoresClasses = new String[1];
@@ -55,17 +55,18 @@ public abstract class Personagem {
 
     // Pega a classe do jogador
     public String [] getClasse(Personagem p){
-        if(atributoClasse.containsKey(p.classeC)){
-            valoresClasses[0] = atributoClasse.get(p.classeC);
+        if(atributoClasse.containsKey(p.classeCaractere)){
+            valoresClasses[0] = atributoClasse.get(p.classeCaractere);
             return valoresClasses;
         }
         return null;
         }
 
+    // Imprime a classe do jogador
     public String imprimeClasse(){
         String classe = "N/A";
-        if(classMap2.containsKey(this.classeC)){
-            classe = classMap2.get(this.classeC);
+        if(classMap2.containsKey(this.classeCaractere)){
+            classe = classMap2.get(this.classeCaractere);
             return classe;
         }
         return classe;
@@ -307,12 +308,12 @@ public abstract class Personagem {
         Personagem.ataque2 = ataque2;
     }
 
-    public char getClasseC() {
-        return classeC;
+    public char getClasseCaractere() {
+        return classeCaractere;
     }
 
-    public void setClasseC(char classeC) {
-        this.classeC = classeC;
+    public void setClasseCaractere(char classeC) {
+        this.classeCaractere = classeC;
     }
 
     public int getVidaMax() {

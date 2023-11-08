@@ -8,7 +8,7 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
     private int critDmg, sorteAtual;
     
     public Guerreiro(){
-        classeC = 'G';
+        classeCaractere = 'G';
         vidaMax = 100;
         vida = vidaMax;
         dano = 30;

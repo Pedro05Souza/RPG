@@ -9,7 +9,7 @@ public class Arqueira extends Personagem implements PersonagemInterface{
     private int ArrowsD, Arrows;
 
     public Arqueira() {
-        classeC = 'A';
+        classeCaractere = 'A';
         vidaMax = 70;
         vida = vidaMax;
         dano = 50;

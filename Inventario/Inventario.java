@@ -92,7 +92,7 @@ public class Inventario {
        if(i.equipado == true){
         cores.setRed("Item already equipped.");
        } 
-       if(p.getClasseC() == i.getItemClasse()){
+       if(p.getClasseCaractere() == i.getItemClasse()){
         i.equipado = true;
         p.setDano(p.getDano() + i.getDano());
         p.setArmadura(p.getArmadura() + i.getArmadura());
