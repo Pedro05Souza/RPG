@@ -18,13 +18,13 @@ public class Inventario {
     
     // metodo que adiciona itens
     public void adicionarItem(Item i){
-       if(itens.size() >= MAXITENS){
-        System.out.println("Inventory is full");
-       } 
-       else {
-        itens.add(i);
-        posAtual = itens.size();
-       }
+        if(itens.size() >= MAXITENS){
+            System.out.println("Inventory is full");
+        } 
+        else {
+            itens.add(i);
+            posAtual = itens.size();
+        }
     }
 
     // metodo que remove itens

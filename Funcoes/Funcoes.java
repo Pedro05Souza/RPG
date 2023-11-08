@@ -59,7 +59,7 @@ public class Funcoes {
         } catch (IOException e) {
             cores.setRed("An error occurred while saving.");
         }
-        }
+    }
 
     // Função que carrega os stats do jogador
     public boolean loadStats() {
@@ -120,6 +120,7 @@ public class Funcoes {
                 escolherClasse();
                 break;
                 default:
+                cores.setRed("Invalid option.");
                 break;
             }
         }else {
@@ -143,7 +144,6 @@ public class Funcoes {
                 e.printStackTrace();
             }
         }
-        limpaConsole();
         i.death(p);
         p.death();
         rodadas = 0;
@@ -261,5 +261,10 @@ public class Funcoes {
         System.out.println("[6]. Save and leave");
         System.out.println("--------------------------------");
         return input.nextInt();
+    }
+
+    // getters e setters
+    public File getSave() {
+        return save;
     }
 }
