@@ -9,7 +9,7 @@ public class Elemental extends Inimigos implements InimigosInterface {
         nome = "Shadow Elemental";
         vidaMax = 100;
         vida = vidaMax;
-        dano = 40;
+        dano = 20;
         armadura = 15;
         xp = 100;
         nivel = 2;

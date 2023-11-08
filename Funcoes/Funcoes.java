@@ -39,7 +39,7 @@ public class Funcoes {
         input = new Scanner(System.in);
         i = null;
         inv = new Inventario();
-        p = escolherClasse(); // falta resolver um bglh
+        p = null; // falta resolver um bglh
         inimigos = new ArrayList<>();
         save = new File("save.txt");
     }
@@ -53,7 +53,7 @@ public class Funcoes {
         writer.write("Level: " + p.getLevel() + "\n");
         writer.write("XP: " + p.getXp() + "\n");
         writer.write("HP: " + p.getVida() + "\n");
-        writer.write("Armor " + p.getArmadura() + "\n");
+        writer.write("Armor: " + p.getArmadura() + "\n");
         writer.write("Damage: " + p.getDano() + "\n");
         writer.close();
         } catch (IOException e) {
@@ -89,9 +89,23 @@ public class Funcoes {
                         p.setDano(Integer.parseInt(value));
                         break;
                     case "Class":
-                        // falta fazer essa merda tbm
+                        switch (value) {
+                            case "Knight":
+                                p = new Knight();
+                                break;
+                            case "Arqueira":
+                                p = new Arqueira();
+                                break;
+                            case "Guerreiro":
+                                p = new Guerreiro();
+                                break;
+                            case "Mago":
+                                p = new Mago();
+                                break;
+                            default:
+                                break;
+                        }
                         break;
-                
                     default:
                         break;
                 }
