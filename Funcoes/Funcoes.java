@@ -49,36 +49,142 @@ public class Funcoes {
         try (
         BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) 
         {
-        writer.write("Class: " + p.imprimeClasse() + "\n");
-        writer.write("Level: " + p.getLevel() + "\n");
-        writer.write("XP: " + p.getXp() + "\n");
-        writer.write("HP: " + p.getVida() + "\n");
-        writer.write("Armor: " + p.getArmadura() + "\n");
-        writer.write("Damage: " + p.getDano() + "\n");
+        writer.write(encryptS("Class") + ": " + encryptS(p.imprimeClasse()) + "\n");
+        writer.write(encryptS("Level") + ": " + encryptI(p.getLevel()) + "\n");
+        writer.write(encryptS("XP") + ": " + encryptI(p.getXp()) + "\n");
+        writer.write(encryptS("HP")+ ": " + encryptI(p.getVida()) + "\n");
+        writer.write(encryptS("Armor") + ": " + encryptI(p.getArmadura()) + "\n");
+        writer.write(encryptS("Damage")+ ": " + encryptI(p.getDano()) + "\n");
         writer.close();
         } catch (IOException e) {
             cores.setRed("An error occurred while saving.");
         }
     }
 
+    // Função que criptografa os stats do jogador
+    public String encryptS(String bayo) {
+        String palavra = "N/A";
+        StringBuilder sb = new StringBuilder();
+         char [] array = bayo.toCharArray();
+         for(int i = 0; i < array.length; i++){
+             array[i] += 5;
+         }
+         palavra = sb.append(array).toString();
+         return palavra;
+    }
 
-    public void encrypt() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(save));
-        BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) {
-            String line;
-            StringBuilder criptografia = new StringBuilder();
-            String linhacripto = "N/A";
-            while ((line = reader.readLine()) != null) {
-                char[] chars = line.toCharArray();
-                for(int i = 0; i < chars.length; i++){
-                    chars[i] += 5; 
-                }
-                linhacripto = criptografia.append(chars).append("\n").toString();
-                writer.write(linhacripto);
-                writer.close();
+    // Função que descriptografa os stats do jogador
+    public String decryptS(String bayo){
+        String palavra = "N/A";
+        StringBuilder sb = new StringBuilder();
+        char [] array = bayo.toCharArray();
+        for(int i = 0; i < array.length; i++){
+            array[i] -= 5;
+        }
+        palavra = sb.append(array).toString();
+        return palavra;
+    }
+    
+    // Função que criptografa os stats do jogador
+    public String encryptI(int bayo) {
+        String s = Integer.toString(bayo);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            switch (c) {
+                case '1':
+                    sb.append("a");
+                    break;
+                case '2':
+                    sb.append("b");
+                    break;
+                case '3':
+                    sb.append("c");
+                    break;
+                case '4':
+                    sb.append("d");
+                    break;
+                case '5':
+                    sb.append("e");
+                    break;
+                case '6':
+                    sb.append("f");
+                    break;
+                case '7':
+                    sb.append("g");
+                    break;
+                case '8':
+                    sb.append("h");
+                    break;
+                case '9':
+                    sb.append("i");
+                    break;
+                case '0':
+                    sb.append("j");
+                    break;
+                default:
+                    break;
             }
-        } catch (IOException e) {
-            cores.setRed("An error occurred while encrypting.");
+        }
+        s = sb.toString();
+        return s;
+        
+    }
+    // Função que descriptografa os stats do jogador
+    public int decryptI(String bayo){
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        char [] array = bayo.toCharArray();
+        for(int j = 0; j < array.length; j++){
+            char c = array[j];
+            switch (c) {
+                case 'a':
+                    sb.append("1");
+                    break;
+                case 'b':
+                    sb.append("2");
+                    break;
+                case 'c':
+                    sb.append("3");
+                    break;
+                case 'd':
+                    sb.append("4");
+                    break;
+                case 'e':
+                    sb.append("5");
+                    break;
+                case 'f':
+                    sb.append("6");
+                    break;
+                case 'g':
+                    sb.append("7");
+                    break;
+                case 'h':
+                    sb.append("8");
+                    break;
+                case 'i':
+                    sb.append("9");
+                    break;
+                case 'j':
+                    sb.append("0");
+                    break;
+                default:
+                    break;
+            }
+        }
+        i = Integer.parseInt(sb.toString());
+        return i;
+    }
+
+    public File descriptador(File save){
+        try(
+            BufferedReader reader = new BufferedReader((new FileReader(save)))){
+            String line;
+            while((line = reader.readLine()) != null){
+                String [] stats = line.split(": ");
+                if(stats.length > 1){}
+            }
+
         }
     }
 
