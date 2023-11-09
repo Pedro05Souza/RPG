@@ -26,7 +26,6 @@ public abstract class Personagem {
     protected Timer timer = new Timer();  
     private String [] valoresClasses = new String[1];
     private static final Map<Character, String> atributoClasse = new HashMap<>();
-    private static final Map<Character, String> classMap2 = new HashMap<>();
 
     // Define os valores dos atributos das classes
     static {
@@ -36,13 +35,6 @@ public abstract class Personagem {
         atributoClasse.put('A', "Arrows");
     }
 
-    // Define os nomes das classes
-    static {
-        classMap2.put('M', "Mage");
-        classMap2.put('G', "Warrrior");
-        classMap2.put('K', "Knight");
-        classMap2.put('A', "Archer");
-    }
                                       
     // Status do jogador
     public void status() throws IllegalArgumentException, IllegalAccessException {
@@ -64,15 +56,7 @@ public abstract class Personagem {
         return null;
         }
 
-    // Imprime a classe do jogador
-    public String imprimeClasse(){
-        String classe = "N/A";
-        if(classMap2.containsKey(this.classeCaractere)){
-            classe = classMap2.get(this.classeCaractere);
-            return classe;
-        }
-        return classe;
-    }
+
 
 
     // Upar de nível

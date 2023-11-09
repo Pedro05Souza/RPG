@@ -40,7 +40,7 @@ public class Funcoes {
         try (
         BufferedWriter writer = new BufferedWriter((new FileWriter(save)))) 
         {
-        writer.write(encryptS("Class") + ": " + encryptS(p.imprimeClasse()) + "\n");
+        writer.write(encryptS("Class") + ": " + encryptS(Character.toString(p.getClasseCaractere())) + "\n");
         writer.write(encryptS("Level") + ": " + encryptI(p.getLevel()) + "\n");
         writer.write(encryptS("XP") + ": " + encryptI(p.getXp()) + "\n");
         writer.write(encryptS("HP")+ ": " + encryptI(p.getVida()) + "\n");
@@ -210,38 +210,38 @@ public class Funcoes {
                     String value = stats[1];
                 switch (stat) {
                     case "Level":
-                        p.setLevel(Integer.parseInt(value));
+                    if (p != null) p.setLevel(Integer.parseInt(value));
                         break;
                     case "XP":
-                        p.setXp(Integer.parseInt(value));
+                    if (p != null)p.setXp(Integer.parseInt(value));
                         break;
                     case "HP":
-                        p.setVida(Integer.parseInt(value));
+                    if (p != null)p.setVida(Integer.parseInt(value));
                         break;
                     case "Armor":
-                        p.setArmadura(Integer.parseInt(value));
+                    if (p != null)p.setArmadura(Integer.parseInt(value));
                         break;
                     case "Damage":  
-                        p.setDano(Integer.parseInt(value));
+                    if (p != null)p.setDano(Integer.parseInt(value));
                         break;
                     case "Class":
                         switch (value) {
-                            case "Knight":
+                            case "K":
                                 p = new Knight();
                                 p.setClasseCaractere('K');
                                 p.getClasse(p);
                                 break;
-                            case "Arqueira":
+                            case "A":
                                 p = new Arqueira();
                                 p.setClasseCaractere('A');
                                 p.getClasse(p);
                                 break;
-                            case "Guerreiro":
+                            case "G":
                                 p = new Guerreiro();
                                 p.setClasseCaractere('G');
                                 p.getClasse(p);
                                 break;
-                            case "Mago":
+                            case "M":
                                 p = new Mago();
                                 p.setClasseCaractere('M');
                                 p.getClasse(p);
@@ -263,30 +263,38 @@ public class Funcoes {
         decryptedFile.delete();
         return temvalor;
     }
+
     // Função que verifica se o jogador tem um save file
-    public void loadSave(boolean temValor){
-        if(temValor){
+    public void loadSave(boolean temValor) {
+        if (temValor) {
             cores.setGreen("The game detected a save file, would you like to load it?");
             System.out.println("[1] - Yes");
             System.out.println("[2] - No");
             int load = input.nextInt();
             switch (load) {
                 case 1:
-                cores.setGreen("Loading save...");
-                loadStats();
-                break;
+                    cores.setGreen("Loading save...");
+                    boolean loaded = loadStats();
+                    if (!loaded) {
+                        cores.setRed("Failed to load save.");
+                        p = escolherClasse();
+                        save.delete();
+                        decryptedFile.delete();
+                    }
+                    break;
                 case 2:
-                cores.setGreen("Starting new game...");
-                escolherClasse();
-                break;
+                    cores.setGreen("Starting new game...");
+                    p = escolherClasse();
+                    save.delete();
+                    decryptedFile.delete();
+                    break;
                 default:
-                cores.setRed("Invalid option.");
-                break;
+                    cores.setRed("Invalid option.");
+                    break;
             }
-        }else {
+        } else {
             p = escolherClasse();
         }
-
     }
 
     public void deleteSave(){
