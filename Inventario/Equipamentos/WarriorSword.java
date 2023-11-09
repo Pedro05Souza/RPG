@@ -12,6 +12,7 @@ public class WarriorSword extends Item {
         nome = "Warrior Sword";
         itemClasse = 'G';
         descricao = "A sword made for warriors.";
+        tiposRaridade = Inventario.Item.tiposRaridade.Epic;
         dano = 20;
         armadura = 0;
         vida = 0;

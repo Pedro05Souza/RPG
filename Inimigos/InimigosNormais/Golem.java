@@ -1,11 +1,11 @@
 package Inimigos.InimigosNormais;
-import Funcoes.Funcoes;
 import Inimigos.Inimigos;
 import Inimigos.InimigosInterface;
+import Inventario.Equipamentos.EtherealRing;
+import Inventario.Equipamentos.WarriorSword;
 import Personagens.Personagem;
 
 public class Golem extends Inimigos implements InimigosInterface {
-    private boolean rodando = false;
 
     public Golem(Personagem p){
         super(p.getLevel());
@@ -16,6 +16,7 @@ public class Golem extends Inimigos implements InimigosInterface {
         armadura = 2;
         xp = 100;
         nivel = 5;
+        dropList();
     }
 
     //Escolhe aleatoriamente um ataque do inimigo
@@ -49,8 +50,7 @@ public class Golem extends Inimigos implements InimigosInterface {
     //Droplist (não tem itens)
     @Override
     public void dropList() {
+        drops.add(new WarriorSword());
     }
  
-
-
 }

@@ -47,9 +47,9 @@ public class Guerreiro extends Personagem implements PersonagemInterface {
         int dano = getDano();
         if(danoCrit > sorte){
             int danoFinal = dano * 2;
-            System.out.println("Your character deals CRITICAL damage, dealing " + danoFinal + " damage to " + i.getNome());
+            System.out.println("Your character deals CRITICAL damage, dealing " + i.danoTomadoI(danoFinal) + " damage to " + i.getNome());
         }
-        System.out.println("Your character deals " + dano +  " damage to " + i.getNome());
+        System.out.println("Your character deals " + i.danoTomadoI(dano) +  " damage to " + i.getNome());
     }
 
     //Executa o segundo tipo de ataque
