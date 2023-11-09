@@ -47,7 +47,7 @@ public abstract class Personagem {
         System.out.println(getClasse(valoresClasses) + ": " + getCalculoClasse(this, valoresClasses));
     }
 
-    // Pega a classe do jogador
+    // Procura a classe do jogador no Map
     public String [] getClasseMap(Personagem p){
         if(atributoClasse.containsKey(p.classeCaractere)){
             valoresClasses[0] = atributoClasse.get(p.classeCaractere);
@@ -189,12 +189,7 @@ public abstract class Personagem {
             }
         }
     }
-    // Função que cura o jogador: FALTA FAZER, precisa de uma variável q pega o limite da vida do jogador
-  //  public void cura() {
-       // if(getVida() > 0 && getVida() < 100 && Funcoes.Rodadas > 0){
 
-      //  }
-   // }
 
     // Menu de ataque do jogador
     public static void menuAtaque(){
