@@ -23,11 +23,11 @@ import cores.cores;
  * Classe que contém as funções do jogo
  * STATUS: Funcional, ajustes no load e save;
  */
-
 public class Funcoes {
     public static int rodadas;
     private static Timer timer;
     private ArrayList<Inimigos> inimigos;
+    File decryptedFile;
     private File save;
     private Scanner input;
     private Inimigos i;
@@ -42,6 +42,7 @@ public class Funcoes {
         p = null;
         inimigos = new ArrayList<>();
         save = new File("save.txt");
+        decryptedFile = new File("decrypted.txt");
     }
 
     // Função que salva os stats do jogador
@@ -65,7 +66,7 @@ public class Funcoes {
     public String encryptS(String bayo) {
         String palavra = "N/A";
         StringBuilder sb = new StringBuilder();
-         char [] array = bayo.toCharArray();
+        char [] array = bayo.toCharArray();
          for(int i = 0; i < array.length; i++){
              array[i] += 5;
          }
@@ -172,27 +173,44 @@ public class Funcoes {
                     break;
             }
         }
+        if(sb.length() > 0){
         i = Integer.parseInt(sb.toString());
+        }
         return i;
     }
 
-    public File descriptador(File save){
-        try(
-            BufferedReader reader = new BufferedReader((new FileReader(save)))){
+    // Função que descriptografa o save file
+    public File desemcriptador(File save) {
+        try (
+            BufferedReader reader = new BufferedReader(new FileReader(save));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(decryptedFile))
+        ) {
             String line;
-            while((line = reader.readLine()) != null){
-                String [] stats = line.split(": ");
-                if(stats.length > 1){}
+            while ((line = reader.readLine()) != null) {
+                String[] stats = line.split(": ");
+                if (stats.length > 1) {
+                    String stat = decryptS(stats[0]);
+                    String value = stats[1];
+                    if(stat.equals("Class")){
+                        value = decryptS(value);
+                    } else {
+                        value = Integer.toString(decryptI(value));
+                    }
+                    writer.write(stat + ": " + value + "\n");
+                }
             }
-
+            writer.close();
+        } catch (IOException e) {
+            cores.setRed("Failed to decrypt save file.");
         }
+        return decryptedFile;
     }
 
     // Função que carrega os stats do jogador
     public boolean loadStats() {
         boolean temvalor = false;
         try (
-            BufferedReader reader = new BufferedReader((new FileReader(save)))) {
+            BufferedReader reader = new BufferedReader((new FileReader(desemcriptador(save))))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String [] stats = line.split(": ");
@@ -219,15 +237,23 @@ public class Funcoes {
                         switch (value) {
                             case "Knight":
                                 p = new Knight();
+                                p.setClasseCaractere('K');
+                                p.getClasse(p);
                                 break;
                             case "Arqueira":
                                 p = new Arqueira();
+                                p.setClasseCaractere('A');
+                                p.getClasse(p);
                                 break;
                             case "Guerreiro":
                                 p = new Guerreiro();
+                                p.setClasseCaractere('G');
+                                p.getClasse(p);
                                 break;
                             case "Mago":
                                 p = new Mago();
+                                p.setClasseCaractere('M');
+                                p.getClasse(p);
                                 break;
                             default:
                                 break;
@@ -239,12 +265,14 @@ public class Funcoes {
             }
             }
             temvalor = true;
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException e) {    
             cores.setRed("No save file was found.");
         }
+        // deleta o arquivo descriptografado por segurança
+        decryptedFile.delete();
         return temvalor;
     }
-
+    // Função que verifica se o jogador tem um save file
     public void loadSave(boolean temValor){
         if(temValor){
             cores.setGreen("The game detected a save file, would you like to load it?");
@@ -394,6 +422,7 @@ public class Funcoes {
                 break;
                 case 7:
                 deleteSave();
+                running = false;
                 break;
                 default:
                 cores.setRed("Invalid option.");
