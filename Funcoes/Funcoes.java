@@ -1,27 +1,17 @@
 package Funcoes;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.Buffer;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import Inimigos.*;
-import Inimigos.InimigosNormais.Elemental;
-import Inimigos.InimigosNormais.Golem;
+import Inimigos.InimigosNormais.*;
 import Inventario.Inventario;
 import Personagens.*;
-import Personagens.Classes.Arqueira;
-import Personagens.Classes.Guerreiro;
-import Personagens.Classes.Knight;
-import Personagens.Classes.Mago;
+import Personagens.Classes.*;
 import cores.cores;
 
 /*
  * Classe que contém as funções do jogo
- * STATUS: Funcional, ajustes no load e save;
+ * STATUS: Funcional, save funcionando
  */
 public class Funcoes {
     public static int rodadas;
@@ -56,6 +46,7 @@ public class Funcoes {
         writer.write(encryptS("HP")+ ": " + encryptI(p.getVida()) + "\n");
         writer.write(encryptS("Armor") + ": " + encryptI(p.getArmadura()) + "\n");
         writer.write(encryptS("Damage")+ ": " + encryptI(p.getDano()) + "\n");
+        // falta fazer o inventário do jogador tbm
         writer.close();
         } catch (IOException e) {
             cores.setRed("An error occurred while saving.");
