@@ -229,22 +229,22 @@ public class Funcoes {
                             case "K":
                                 p = new Knight();
                                 p.setClasseCaractere('K');
-                                p.getClasse(p);
+                                p.getClasseMap(p);
                                 break;
                             case "A":
                                 p = new Arqueira();
                                 p.setClasseCaractere('A');
-                                p.getClasse(p);
+                                p.getClasseMap(p);
                                 break;
                             case "G":
                                 p = new Guerreiro();
                                 p.setClasseCaractere('G');
-                                p.getClasse(p);
+                                p.getClasseMap(p);
                                 break;
                             case "M":
                                 p = new Mago();
                                 p.setClasseCaractere('M');
-                                p.getClasse(p);
+                                p.getClasseMap(p);
                                 break;
                             default:
                                 break;
@@ -296,7 +296,7 @@ public class Funcoes {
             p = escolherClasse();
         }
     }
-
+    // Função que deleta o save file
     public void deleteSave(){
         if(save.exists() ==  false){
             cores.setRed("No save file was found.");
@@ -346,7 +346,6 @@ public class Funcoes {
     }
 
     // Função que adiciona os inimigos na lista
-
     public void inimigosLista(){
         Golem golem = new Golem(p);
         Elemental elemental = new Elemental(p);
@@ -386,7 +385,7 @@ public class Funcoes {
                 break;
         }
         cores.setGreen("You have successfully chosen your class.");
-        p.getClasse(p);
+        p.getClasseMap(p);
         return p;
     }
     
@@ -431,7 +430,7 @@ public class Funcoes {
 
 
     }
-
+    // Função que mostra o menu principal
     public int menu(){
         System.out.println("--------------------------------");
         cores.setYellow("Main Menu");

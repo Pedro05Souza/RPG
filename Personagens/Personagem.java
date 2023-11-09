@@ -48,7 +48,7 @@ public abstract class Personagem {
     }
 
     // Pega a classe do jogador
-    public String [] getClasse(Personagem p){
+    public String [] getClasseMap(Personagem p){
         if(atributoClasse.containsKey(p.classeCaractere)){
             valoresClasses[0] = atributoClasse.get(p.classeCaractere);
             return valoresClasses;
