@@ -11,31 +11,49 @@ import java.util.Scanner;
  */
 public class Inventario {
     private static final int MAXITENS = 5;
+    private static final int MAXITENSEQUIPADOS = 3;
     private Personagem p;
-    private Scanner input = new Scanner(System.in);
-    protected int posAtual = -1;
-    ArrayList<Item> itens = new ArrayList<Item>();
+    private Scanner input;
+    protected int posAtual;
+    ArrayList<Item> itens;
+    ArrayList<Item> itensEquipados;
+
+    public Inventario(){
+        itens = new ArrayList<Item>(MAXITENS);
+        itensEquipados = new ArrayList<Item>(MAXITENSEQUIPADOS);
+        posAtual = -1;
+        input = new Scanner(System.in);
+    }
     
     // metodo que adiciona itens
     public void adicionarItem(Item i){
         if(itens.size() >= MAXITENS){
-            System.out.println("Inventory is full");
-        } 
-        else {
+            cores.setRed("Inventory is full");
+        }
+
+        for(Item item : itens){
+            if(item.getNome() == i.getNome()){
+                cores.setGreen("You already have this item. Money was given instead.");
+                return;
+            }
+            else {
             itens.add(i);
             posAtual = itens.size();
+            cores.setGreen(i.getNome() + "added to inventory.");
+        }
         }
     }
 
     // metodo que remove itens
     public void removerItem(int posicao){
         if(posicao > 5 || posicao < 0){
-            System.out.println("Invalid Position");
+            cores.setRed("Invalid Position");
         }
         for (Item item : itens) {
             if (itens.indexOf(item) == posicao) {
                 itens.remove(item);
                 posAtual = itens.size();
+                cores.setGreen(item.getNome() + " removed from inventory.");
                 break;
             }
         }
@@ -52,7 +70,7 @@ public class Inventario {
     public void pegaritemInimigo(Item i){
         if(i != null){
             System.out.println("You just dropped a " + i.getNome() + "!");
-            System.out.println("Rarity: " + i.getTiposRaridade());
+            System.out.println("Rarity: " + i.getRaridadeString());
             System.out.println("[1]. Pick up;");
             System.out.println("[2]. Leave it;");
             int opcao = input.nextInt();
@@ -82,28 +100,37 @@ public class Inventario {
             }
         }
         return i;
-
     }
 
     //Método de equipar o item
 
 
 
-    public void equiparItem(Item i){
-       if(i.equipado == true){
-        cores.setRed("Item already equipped.");
-       } 
-       if(p.getClasseCaractere() == i.getItemClasse()){
-        i.equipado = true;
-        p.setDano(p.getDano() + i.getDano());
-        p.setArmadura(p.getArmadura() + i.getArmadura());
-        p.setVida(p.getVida() + i.getVida());
-        cores.setGreen("Item equipped.");
-       } else {
-        cores.setRed("This item is not for your class.");
-       }
-    }
+    public void equiparItem(Item i) {
+        for (Item item : itensEquipados) {
+            if (item.getNome().equals(i.getNome())) {
+                cores.setRed("Item already equipped.");
+                return;
+            } 
 
+           if(p.getClasseCaractere() != i.getItemClasse()){
+               cores.setRed("You can't equip this item.");
+               return;
+           }
+           if(itensEquipados.size() == 3){
+                cores.setRed("You can't equip more than 3 items.");
+                return;
+           }
+           else {
+                itensEquipados.add(i);
+                p.setDano(p.getDano() + i.getDano());
+                p.setArmadura(p.getArmadura() + i.getArmadura());
+                p.setVida(p.getVida() + i.getVida());
+                cores.setGreen(i.getNome() + " equipped.");
+                return;
+           }
+        }
+    }
 
     //Método que mostra o menu do inventário
     public void menuInventario(){

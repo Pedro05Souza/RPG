@@ -7,17 +7,11 @@ package Inventario;
 
 public abstract class Item extends Inventario {
     protected String nome, descricao;
-    protected tiposRaridade tiposRaridade;
+    protected int chanceRaridade;
+    protected String raridadeString;
     protected int dano, vida, armadura, valor;
     protected char itemClasse;
-    boolean equipado;
 
-
-    // enum para raridade dos itens
-    public enum tiposRaridade{
-        Common, Uncommon, Rare, Epic, Legendary, Mythic;
-        
-    }
 
     // impressão dos itens
     public void efeitosItem(){
@@ -30,28 +24,33 @@ public abstract class Item extends Inventario {
         System.out.println("Health: " + getVida());
         System.out.println("Value: " + getValor());
         System.out.println("----------------------");
+        for(Item i : itensEquipados){
+            if(i.getNome() == getNome()){
+                System.out.println("EQUIPPED");
+            }
+        }
     }
 
     // diz a porcentagem de drop de item por raridade
-    public int chanceRaridade() {
+    public int porcentagemPorRaridade(String raridade) {
         int porcentagem = 0;
-        switch (tiposRaridade) {
-            case Common:
+        switch (raridade) {
+            case "Common":
                 porcentagem = 55;
                 break;
-            case Uncommon:
+            case "Uncommon":
                 porcentagem = 20;
                 break;
-            case Rare:
+            case "Rare":
                 porcentagem = 12;
                 break;
-            case Epic:
+            case "Epic":
                 porcentagem = 7;
                 break;
-            case Legendary:
+            case "Legendary":
                 porcentagem = 5;
                 break;
-            case Mythic:
+            case "Mythic":
                 porcentagem = 1;
                 break;
             default:
@@ -76,13 +75,6 @@ public abstract class Item extends Inventario {
     }
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public boolean isEquipado() {
-        return equipado;
-    }
-    public void setEquipado(boolean equipado) {
-        this.equipado = equipado;
     }
 
     public int getDano() {
@@ -120,12 +112,22 @@ public abstract class Item extends Inventario {
         this.valor = valor;
     }
 
-    public tiposRaridade getTiposRaridade() {
-        return tiposRaridade;
+    public int getChanceRaridade() {
+        return chanceRaridade;
     }
 
-    public void setTiposRaridade(tiposRaridade tiposRaridade) {
-        this.tiposRaridade = tiposRaridade;
+    public void setChanceRaridade(int chanceRaridade) {
+        this.chanceRaridade = chanceRaridade;
     }
+
+    public String getRaridadeString() {
+        return raridadeString;
+    }
+
+    public void setRaridade(String raridadeString) {
+        this.raridadeString = raridadeString;
+    }
+    
+
 
 }

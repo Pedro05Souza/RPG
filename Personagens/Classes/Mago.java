@@ -40,6 +40,11 @@ public class Mago extends Personagem implements PersonagemInterface {
             case 2:
             //ataque2(i);
             break;
+            case 3:
+            if(fugirBatalha()){
+                break;
+            }
+            break;
         }
         
     }

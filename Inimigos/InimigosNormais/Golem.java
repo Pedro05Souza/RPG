@@ -1,7 +1,6 @@
 package Inimigos.InimigosNormais;
 import Inimigos.Inimigos;
 import Inimigos.InimigosInterface;
-import Inventario.Equipamentos.EtherealRing;
 import Inventario.Equipamentos.WarriorSword;
 import Personagens.Personagem;
 
@@ -43,7 +42,8 @@ public class Golem extends Inimigos implements InimigosInterface {
     //Executa o segundo tipo de ataque do inimigo
     @Override
     public void ataque2(Personagem p) {
-        }
+
+    }
      
     
     

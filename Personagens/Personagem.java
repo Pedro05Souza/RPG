@@ -56,8 +56,22 @@ public abstract class Personagem {
         return null;
         }
 
-
-
+    public boolean fugirBatalha(){
+        boolean fugir = false;
+        System.out.println("[3]. Run");
+        int menu = input.nextInt();
+        if(menu == 3){
+            int rngFuga = r.nextInt(3);
+            if(rngFuga == 0){
+                cores.setGreen("You managed to escape.");
+                fugir = true;
+            } else {
+                cores.setRed("You failed to escape.");
+                fugir = false;
+            }
+        }
+        return fugir;
+    }
 
     // Upar de nível
     public void uparLvl(){   
@@ -197,6 +211,7 @@ public abstract class Personagem {
         System.out.println("Choose your character's attacks: ");
         System.out.println("[1]. " + getAtaque1N());
         System.out.println("[2]. " + getAtaque2N());
+        System.out.println("[3]. Run");
         System.out.println("--------------------------------");
     }
 

@@ -29,9 +29,9 @@ import cores.cores;
             setPontos(Scaling(p));
         }
 
-        // Função que seta os métodos do inimigo pegando o level do player * 8
+        // Função que seta os métodos do inimigo pegando o level do player * 2
         public void setPontos(int nivel) {
-            int FormulaPonto = nivel * 4;
+            int FormulaPonto = nivel * 2;
             int FormulaXp = nivel * 40;
             pontos = FormulaPonto;
             setXp(FormulaXp);
@@ -111,13 +111,13 @@ import cores.cores;
             int menorDiferenca = Integer.MAX_VALUE;
             Item itemEscolhido = null;
             for (Item item : drops) {
-                sorteTotal += item.chanceRaridade();
+                sorteTotal += item.getChanceRaridade();
             }
             if (sorteTotal >= rng) {
                 for (Item item : drops) {
-                    int diferencaAtual = Math.abs(item.chanceRaridade() - rng);
+                    int diferencaAtual = Math.abs(item.getChanceRaridade() - rng);
                     if (Math.abs(menorDiferenca - rng) > diferencaAtual) {
-                        menorDiferenca = item.chanceRaridade() - rng;
+                        menorDiferenca = item.getChanceRaridade() - rng;
                         itemEscolhido = item;
                     }
                 }

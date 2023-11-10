@@ -1,6 +1,7 @@
 package Inimigos.InimigosNormais;
 import Inimigos.Inimigos;
 import Inimigos.InimigosInterface;
+import Inventario.Equipamentos.*;
 import Personagens.Personagem;
 public class Elemental extends Inimigos implements InimigosInterface {
 
@@ -56,7 +57,9 @@ public class Elemental extends Inimigos implements InimigosInterface {
     //Droplist (não tem itens ainda)
     @Override
     public void dropList() {
-        
+        drops.add(new WarriorSword());
+        drops.add(new EtherealRing());
+
     }
 
 
